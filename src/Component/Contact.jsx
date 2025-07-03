@@ -25,7 +25,7 @@ const ContactSection = () => {
           <div className="flex gap-4 pt-4">
             <SocialLink name="Facebook" />
             <SocialLink name="Instagram" />
-            {/* Removed LinkedIn and GitHub */}
+            {/* LinkedIn and GitHub removed as requested */}
           </div>
         </div>
 
@@ -92,12 +92,12 @@ const ContactSection = () => {
 };
 
 const ContactCard = ({ icon, label, value }) => (
-  <div className="flex items-center gap-4 p-4 rounded-lg bg-gradient-to-r from-orange-500 to-red-600 shadow-md hover:scale-[1.02] transition">
-    <div className="w-12 h-12 flex items-center justify-center bg-gradient-to-r from-orange-500 to-red-600 rounded-full text-xl">
+  <div className="flex items-center gap-4 p-4 rounded-lg bg-white/10 backdrop-blur-md border border-white/20 shadow-md hover:scale-[1.02] transition">
+    <div className="w-12 h-12 flex items-center justify-center bg-gradient-to-r from-orange-500 to-red-600 rounded-full text-xl text-white shadow">
       {icon}
     </div>
     <div>
-      <p className="text-sm text-white/80">{label}</p>
+      <p className="text-sm text-gray-300">{label}</p>
       <p className="text-lg font-semibold text-white">{value}</p>
     </div>
   </div>
