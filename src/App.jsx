@@ -4,7 +4,7 @@ import Header from './Component/Header';
 import Banner from './Component/Banner';
 import Skill from './Component/Skill'
 
-// import Projects from './Component/Project';
+import Projects from './Component/Projects';
 import AboutME from './Component/AboutMe';
 // import ContactForm from './Component/ContactForm';
 
@@ -14,11 +14,11 @@ function App() {
       <Header />
       <div id="banner"><Banner /></div>
       <div id="about">< AboutME /></div>
-       <div id="about">< Skill /></div>
+       <div id="skills">< Skill /></div>
     
       
-      {/* <div id="projects"><Projects /></div>
-      <div id="contact"><ContactForm /></div>  */}
+       <div id="projects"><Projects /></div>
+      {/* // <div id="contact"><ContactForm /></div>   */}
     </div>
   );
 }
