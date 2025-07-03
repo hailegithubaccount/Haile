@@ -26,8 +26,8 @@ function Banner() {
 
   const handleDownload = () => {
     const link = document.createElement("a");
-    link.href = "/haile.pdf";
-    link.download = "Haile_Michael_CV.pdf";
+    link.href = "/Haile.pdf";
+    link.download = "Resume.pdf";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -116,22 +116,7 @@ function Banner() {
                 <FontAwesomeIcon icon={faDownload} />
                 Download CV
               </motion.button>
-              
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
-                className="flex items-center gap-2 px-6 py-3 border border-orange-500 text-orange-500 rounded-lg font-medium hover:bg-orange-500 hover:text-white transition-all shadow-lg hover:shadow-xl"
-              >
-                Contact Me
-                <motion.span
-                  animate={{ x: isHovered ? 5 : 0 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
-                  <FontAwesomeIcon icon={faArrowRight} />
-                </motion.span>
-              </motion.button>
+           
             </motion.div>
           </div>
 
