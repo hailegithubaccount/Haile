@@ -21,7 +21,12 @@ const ContactSection = () => {
           <ContactCard icon="📸" label="Instagram" value="@hailei" />
           <ContactCard icon="📱" label="Phone" value="+251 927 83 18 56" />
 
-         
+          {/* Social Links - Only Facebook and Instagram */}
+          <div className="flex gap-4 pt-4">
+            <SocialLink name="Facebook" />
+            <SocialLink name="Instagram" />
+            {/* Removed LinkedIn and GitHub */}
+          </div>
         </div>
 
         {/* Contact Form with Web3Forms */}
@@ -58,11 +63,26 @@ const ContactSection = () => {
               className="w-full px-4 py-3 rounded-md bg-white/20 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-purple-400"
             />
 
+            {/* Gradient Submit Button */}
             <button
               type="submit"
-              className="w-full py-3 bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 rounded-md text-white font-semibold hover:opacity-90 transition"
+              className="w-full py-4 px-8 bg-gradient-to-r from-orange-500 to-red-600 rounded-xl text-white font-bold text-lg shadow-lg flex items-center justify-center gap-2 hover:opacity-90 transition-all"
             >
-              ✉️ Send Message
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-6 h-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 16v1a2 2 0 002 2h12a2 2 0 002-2v-1M12 12v8m0 0l-4-4m4 4l4-4M12 4v8"
+                />
+              </svg>
+              Send Message
             </button>
           </form>
         </div>
@@ -72,12 +92,12 @@ const ContactSection = () => {
 };
 
 const ContactCard = ({ icon, label, value }) => (
-  <div className="flex items-center gap-4 p-4 rounded-lg bg-white/10 backdrop-blur-md border border-white/20 shadow-md hover:scale-[1.02] transition">
-    <div className="w-12 h-12 flex items-center justify-center bg-purple-600 rounded-full text-xl">
+  <div className="flex items-center gap-4 p-4 rounded-lg bg-gradient-to-r from-orange-500 to-red-600 shadow-md hover:scale-[1.02] transition">
+    <div className="w-12 h-12 flex items-center justify-center bg-gradient-to-r from-orange-500 to-red-600 rounded-full text-xl">
       {icon}
     </div>
     <div>
-      <p className="text-sm text-gray-300">{label}</p>
+      <p className="text-sm text-white/80">{label}</p>
       <p className="text-lg font-semibold text-white">{value}</p>
     </div>
   </div>
@@ -86,7 +106,7 @@ const ContactCard = ({ icon, label, value }) => (
 const SocialLink = ({ name }) => (
   <a
     href="#"
-    className="px-4 py-2 rounded-full border border-white/30 hover:bg-white/20 text-white transition text-sm font-medium"
+    className="px-4 py-2 rounded-full border border-white/30 bg-gradient-to-r from-orange-500 to-red-600 text-white text-sm font-semibold shadow-md hover:opacity-90 transition-all"
   >
     {name}
   </a>

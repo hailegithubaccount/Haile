@@ -62,7 +62,7 @@ function Skill() {
           transition={{ duration: 0.5 }}
           className="mb-12"
         >
-          <h1 className="text-4xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600">
+          <h1 className="text-4xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-red-500 to-pink-500">
             Professional Skill Set
           </h1>
           <p className="text-lg text-gray-300 max-w-2xl">
