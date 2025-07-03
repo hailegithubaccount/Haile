@@ -80,7 +80,7 @@ const Project = () => {
       description: "the library staff used for the library purpose",
       github: "https://github.com/hailegithubaccount/studnestDashborad",
       live: "https://studynestdashboard.netlify.app/",
-      tags: ["React", "Styled Components", "Context API"]
+      tags: ["React", "tailwindcss", "Context API"]
     },
   ];
 
