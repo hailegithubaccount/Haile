@@ -7,7 +7,7 @@ import project3 from "../assets/apple.webp";
 import project4 from "../assets/studynest.jpg";
 import project5 from "../assets/fitclub.png";
 import project6 from "../assets/forHotel.png";
-import project7 from "../assets/studynestdashboard"
+import project7 from "../assets/studynestdashboard.png"
 
 const Project = () => {
   const [activeFilter, setActiveFilter] = useState("all");
