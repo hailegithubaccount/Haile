@@ -7,6 +7,7 @@ import project3 from "../assets/apple.webp";
 import project4 from "../assets/studynest.jpg";
 import project5 from "../assets/fitclub.png";
 import project6 from "../assets/forHotel.png";
+import project7 from "../assets/studynestdashboard"
 
 const Project = () => {
   const [activeFilter, setActiveFilter] = useState("all");
@@ -69,6 +70,16 @@ const Project = () => {
       description: "Booking platform for luxury hotels",
       github: "https://github.com/hailegithubaccount/forhotel.git",
       live: "https://forhotelcom.netlify.app/",
+      tags: ["React", "Styled Components", "Context API"]
+    },
+    {
+      id: 6,
+      image: project7,
+      title: "Study Nest Dashboard",
+      type: "web",
+      description: "the library staff used for the library purpose",
+      github: "https://github.com/hailegithubaccount/studnestDashborad",
+      live: "https://studynestdashboard.netlify.app/",
       tags: ["React", "Styled Components", "Context API"]
     },
   ];
