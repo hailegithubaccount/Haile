@@ -73,7 +73,7 @@ const Project = () => {
       tags: ["React", "Styled Components", "Context API"]
     },
     {
-      id: 6,
+      id: 7,
       image: project7,
       title: "Study Nest Dashboard",
       type: "web",

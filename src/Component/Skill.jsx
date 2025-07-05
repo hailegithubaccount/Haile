@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { FaReact, FaNodeJs, FaDatabase, FaServer, FaAws } from 'react-icons/fa';
-import { SiTypescript, SiNextdotjs, SiExpress, SiPostgresql, SiRedis, SiFirebase, SiDocker, SiKubernetes } from 'react-icons/si';
+import { FaReact, FaNodeJs, FaDatabase, FaServer, FaAws ,FaGithub,FaGitAlt} from 'react-icons/fa';
+import { SiTypescript, SiNextdotjs, SiExpress,SiNetlify,SiMysql,SiMongodb,  } from 'react-icons/si';
 import { motion } from "framer-motion";
 
 function Skill() {
@@ -30,18 +30,17 @@ function Skill() {
       title: "Database & Infrastructure",
       icon: <FaDatabase className="text-3xl text-blue-500" />,
       items: [
-        { name: "PostgreSQL", icon: <SiPostgresql className="text-2xl text-blue-700" /> },
-        { name: "Redis", icon: <SiRedis className="text-2xl text-red-600" /> },
-        { name: "Firebase", icon: <SiFirebase className="text-2xl text-yellow-500" /> }
+           { name: "MySQL", icon: <SiMysql className="text-2xl text-blue-600" /> },
+           { name: "MongoDB", icon: <SiMongodb className="text-2xl text-green-600" /> }
       ]
     },
     devops: {
       title: "Cloud & DevOps",
       icon: <FaAws className="text-3xl text-yellow-500" />,
       items: [
-        { name: "Docker", icon: <SiDocker className="text-2xl text-blue-400" /> },
-        { name: "Kubernetes", icon: <SiKubernetes className="text-2xl text-blue-600" /> },
-        { name: "AWS", icon: <FaAws className="text-2xl text-yellow-500" /> }
+        { name: "Git", icon: <FaGitAlt className="text-2xl text-red-500" /> },
+    { name: "GitHub", icon: <FaGithub className="text-2xl text-black" /> },
+    { name: "Netlify", icon: <SiNetlify className="text-2xl text-green-500" /> }
       ]
     }
   };
