@@ -42,8 +42,8 @@ function Skill() {
       icon: <FaAws className="text-3xl text-yellow-500" />,
       items: [
         { name: "Git", icon: <FaGitAlt className="text-2xl text-red-500" /> },
-    { name: "GitHub", icon: <FaGithub className="text-2xl text-black" /> },
-    { name: "Netlify", icon: <SiNetlify className="text-2xl text-green-500" /> }
+        { name: "GitHub", icon: <FaGithub className="text-2xl text-black" /> },
+        { name: "Netlify", icon: <SiNetlify className="text-2xl text-green-500" /> }
       ]
     }
   };

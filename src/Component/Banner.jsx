@@ -65,13 +65,13 @@ function Banner() {
                   </span>
                 </h1>
                 <h2 className="text-xl md:text-2xl text-gray-300 mt-4">
-                  Crafting high-performance web & mobile applications
+                  Web & Mobile App Builder
                 </h2>
               </div>
               
               <p className="text-gray-400 max-w-lg text-lg leading-relaxed">
-                I specialize in building modern applications with React, Vite, and React Native, 
-                focusing on clean architecture, responsive design, and exceptional user experiences.
+                I build fast, modern web and mobile apps with React, Vite, and React Native — combining clean
+                 architecture with responsive design to create smooth and engaging user experiences.
               </p>
             </motion.div>
 
