@@ -18,12 +18,12 @@ const ContactSection = () => {
           <h2 className="text-3xl font-bold text-white mb-6">Let’s Get in Touch</h2>
           <ContactCard icon="📧" label="Email" value="eshetuhailemichael06@gmail.com" />
           <ContactCard icon="💬" label="Telegram" value="@Haile6" />
-          <ContactCard icon="📸" label="Instagram" value="@hailei" />
+          <ContactCard icon="📸" label="Instagram" value="@haile_adey" />
           <ContactCard icon="📱" label="Phone" value="+251 927 83 18 56" />
 
           {/* Social Links - Only Facebook and Instagram */}
           <div className="flex gap-4 pt-4">
-            <SocialLink name="Facebook" />
+            <SocialLink name="Telegram" />
             <SocialLink name="Instagram" />
             {/* LinkedIn and GitHub removed as requested */}
           </div>

@@ -6,6 +6,8 @@ import { faFacebook, faInstagram, faLinkedin, faGithub } from "@fortawesome/free
 import { faDownload, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { FaReact, FaNodeJs, FaMobileAlt, FaCode, FaServer } from 'react-icons/fa';
 import { SiTypescript, SiVite } from 'react-icons/si';
+import { faTelegram } from "@fortawesome/free-brands-svg-icons";
+
 
 // Import your profile image (update path as needed)
 import profileImage from '../assets/one.png';
@@ -76,29 +78,34 @@ function Banner() {
             </motion.div>
 
             {/* Social Links */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.4 }}
-              className="flex gap-6"
-            >
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" 
-                className="hover:text-orange-500 transition-colors transform hover:-translate-y-1">
-                <FontAwesomeIcon icon={faFacebook} size="lg" />
-              </a>
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" 
-                className="hover:text-orange-500 transition-colors transform hover:-translate-y-1">
-                <FontAwesomeIcon icon={faInstagram} size="lg" />
-              </a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" 
-                className="hover:text-orange-500 transition-colors transform hover:-translate-y-1">
-                <FontAwesomeIcon icon={faLinkedin} size="lg" />
-              </a>
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer" 
-                className="hover:text-orange-500 transition-colors transform hover:-translate-y-1">
-                <FontAwesomeIcon icon={faGithub} size="lg" />
-              </a>
-            </motion.div>
+          <motion.div
+  initial={{ opacity: 0 }}
+  animate={{ opacity: 1 }}
+  transition={{ delay: 0.4 }}
+  className="flex gap-6"
+>
+  <a href="https://www.facebook.com/profile.php?id=100072563070175" target="_blank" rel="noopener noreferrer"
+    className="hover:text-orange-500 transition-colors transform hover:-translate-y-1">
+    <FontAwesomeIcon icon={faFacebook} size="lg" />
+  </a>
+  <a href="https://www.instagram.com/haile_adey?igsh=MXBkMHNxcjZ5ZWczMQ==" target="_blank" rel="noopener noreferrer"
+    className="hover:text-orange-500 transition-colors transform hover:-translate-y-1">
+    <FontAwesomeIcon icon={faInstagram} size="lg" />
+  </a>
+  <a href="https://www.linkedin.com/in/hailemichael-eshetu-6920b2372/" target="_blank" rel="noopener noreferrer"
+    className="hover:text-orange-500 transition-colors transform hover:-translate-y-1">
+    <FontAwesomeIcon icon={faLinkedin} size="lg" />
+  </a>
+  <a href="https://github.com/hailegithubaccount" target="_blank" rel="noopener noreferrer"
+    className="hover:text-orange-500 transition-colors transform hover:-translate-y-1">
+    <FontAwesomeIcon icon={faGithub} size="lg" />
+  </a>
+  <a href="https://t.me/Haile6" target="_blank" rel="noopener noreferrer"
+    className="hover:text-orange-500 transition-colors transform hover:-translate-y-1">
+    <FontAwesomeIcon icon={faTelegram} size="lg" />
+  </a>
+</motion.div>
+
 
             {/* Call-to-Action Buttons */}
             <motion.div
