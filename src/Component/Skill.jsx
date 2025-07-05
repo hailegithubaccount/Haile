@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { FaReact, FaNodeJs, FaDatabase, FaServer, FaAws ,FaGithub,FaGitAlt} from 'react-icons/fa';
-import { SiTypescript, SiNextdotjs, SiExpress,SiNetlify,SiMysql,SiMongodb,  } from 'react-icons/si';
+import { SiTypescript, SiNextdotjs, SiExpress,SiNetlify,SiMysql,SiMongodb,SiFlutter  } from 'react-icons/si';
 import { motion } from "framer-motion";
 
 function Skill() {
@@ -14,7 +14,10 @@ function Skill() {
         { name: "React", icon: <FaReact className="text-2xl text-blue-400" /> },
         { name: "React Native", icon: <FaReact className="text-2xl text-blue-500" /> },
         { name: "TypeScript", icon: <SiTypescript className="text-2xl text-blue-600" /> },
-        { name: "Next.js", icon: <SiNextdotjs className="text-2xl text-gray-800" /> }
+        { name: "Next.js", icon: <SiNextdotjs className="text-2xl text-gray-800" /> },
+        {
+  name: "Flutter", icon: <SiFlutter className="text-2xl text-cyan-500" />
+}
       ]
     },
     backend: {
