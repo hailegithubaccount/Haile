@@ -87,7 +87,7 @@ function About() {
               <h2 className="text-2xl font-bold">My Approach</h2>
             </div>
             <p className="text-gray-300 leading-relaxed">
-              As a recent graduate, I combine academic knowledge with hands-on experience. I'm passionate about learning new technologies and applying them to solve real-world problems through clean, maintainable code.
+              As a recent graduate with six months of professional experience, I have worked on real-world projects both full-time and remotely. I contributed to Dashen Super App, gaining experience in frontend development, and worked remotely on Zumbara, an electronics sales application. During my academic studies, I completed a capstone project for students, certified by the Library Directorate of Jimma University. I have also participated in several hackathons, achieving top ranking in one of three competitions with my team. My approach combines academic knowledge with practical experience, continuous learning, and writing clean, maintainable code to build solutions that make a real impact
             </p>
           </motion.div>
         </div>
