@@ -44,7 +44,7 @@ function Skill() {
         { name: "Git", icon: <FaGitAlt className="text-2xl text-red-500" /> },
         { name: "GitHub", icon: <FaGithub className="text-2xl text-black" /> },
         { name: "Netlify", icon: <SiNetlify className="text-2xl text-green-500" /> },
-        { name: "Expo Application Services (EAS)", icon: <SiExpo className="text-2xl text-purple-500" /> }
+        // { name: "Expo Application Services (EAS)", icon: <SiExpo className="text-2xl text-purple-500" /> }
       ]
     }
   };
