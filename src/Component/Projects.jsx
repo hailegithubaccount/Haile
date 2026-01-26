@@ -77,7 +77,7 @@ const Project = () => {
     {
       id: 6,
       image: project6,
-      title: "Hotel Website",
+      title: "website template for hotel ",
       type: "web",
       description: "Booking platform for luxury hotels",
       github: "https://github.com/hailegithubaccount/forhotel.git",
