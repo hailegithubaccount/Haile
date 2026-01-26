@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { FaReact, FaNodeJs, FaDatabase, FaServer, FaAws ,FaGithub,FaGitAlt} from 'react-icons/fa';
-import { SiTypescript, SiNextdotjs, SiExpress,SiNetlify,SiMysql,SiMongodb,SiFlutter  } from 'react-icons/si';
+import { FaReact, FaNodeJs, FaDatabase, FaServer, FaAws, FaGithub, FaGitAlt } from 'react-icons/fa';
+import { SiTypescript, SiNextdotjs, SiExpress, SiNetlify, SiMysql, SiMongodb, SiFlutter } from 'react-icons/si';
 import { motion } from "framer-motion";
 
 function Skill() {
@@ -16,8 +16,8 @@ function Skill() {
         { name: "TypeScript", icon: <SiTypescript className="text-2xl text-blue-600" /> },
         { name: "Next.js", icon: <SiNextdotjs className="text-2xl text-gray-800" /> },
         {
-  name: "Flutter", icon: <SiFlutter className="text-2xl text-cyan-500" />
-}
+          name: "Flutter", icon: <SiFlutter className="text-2xl text-cyan-500" />
+        }
       ]
     },
     backend: {
@@ -33,8 +33,8 @@ function Skill() {
       title: "Database & Infrastructure",
       icon: <FaDatabase className="text-3xl text-blue-500" />,
       items: [
-           { name: "MySQL", icon: <SiMysql className="text-2xl text-blue-600" /> },
-           { name: "MongoDB", icon: <SiMongodb className="text-2xl text-green-600" /> }
+        { name: "MySQL", icon: <SiMysql className="text-2xl text-blue-600" /> },
+        { name: "MongoDB", icon: <SiMongodb className="text-2xl text-green-600" /> }
       ]
     },
     devops: {
@@ -43,7 +43,8 @@ function Skill() {
       items: [
         { name: "Git", icon: <FaGitAlt className="text-2xl text-red-500" /> },
         { name: "GitHub", icon: <FaGithub className="text-2xl text-black" /> },
-        { name: "Netlify", icon: <SiNetlify className="text-2xl text-green-500" /> }
+        { name: "Netlify", icon: <SiNetlify className="text-2xl text-green-500" /> },
+        { name: "Expo Application Services (EAS)", icon: <SiExpo className="text-2xl text-purple-500" /> }
       ]
     }
   };
@@ -104,7 +105,7 @@ function Skill() {
             <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
               <span className="text-blue-400">▹</span> {skills[activeTab].title}
             </h2>
-            
+
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {skills[activeTab].items.map((skill, index) => (
                 <motion.div
