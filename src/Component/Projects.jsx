@@ -2,18 +2,29 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 import project1 from "../assets/azmeraTrade.jpg";
-import project2 from "../assets/netflixd.jpg";
+import project2 from "../assets/Netflix.png";
 import project3 from "../assets/apple.webp";
 import project4 from "../assets/studynest.jpg";
 import project5 from "../assets/fitclub.png";
 import project6 from "../assets/forHotel.png";
 import project7 from "../assets/studynestdashboard.png"
+import project8 from "../assets/image.png"
+import project9 from "../assets/Dashen.png"
 
 const Project = () => {
   const [activeFilter, setActiveFilter] = useState("all");
   const [hoveredProject, setHoveredProject] = useState(null);
 
   const projects = [
+    {
+      id: 9,
+      image: project9,
+      title: "Dashen Bank Super App",
+      type: "app",
+      description: "Dashen Bank Super App is a mobile application that allows users to perform various banking transactions such as checking account balance, transferring money, and paying bills.",
+      tags: ["React Native", "Zustand"]
+    },
+    ,
     {
       id: 1,
       image: project1,
@@ -25,12 +36,21 @@ const Project = () => {
     },
     {
       id: 2,
+      image: project4,
+      title: "Study Nest",
+      type: "app",
+      description: "Educational platform for students",
+      github: "https://github.com/user/project4",
+      tags: ["React Native", "MongoDB", "Node.js"]
+    },
+    {
+      id: 4,
       image: project2,
-      title: "Netflix Clone",
+      title: "Netflix",
       type: "web",
       description: "Streaming platform clone with movie database",
       github: "https://github.com/hailegithubaccount/netflix-by-react.git",
-      live: "https://selamhailecom.netlify.app/",
+      live: "https://netflix-by-react-1he4.vercel.app/",
       tags: ["React", "TMDB API", "Firebase Auth"]
     },
     {
@@ -43,15 +63,7 @@ const Project = () => {
       live: "https://leomain.netlify.app/",
       tags: ["React", "GSAP", "Tailwind CSS"]
     },
-    {
-      id: 4,
-      image: project4,
-      title: "Study Nest",
-      type: "app",
-      description: "Educational platform for students",
-      github: "https://github.com/user/project4",
-      tags: ["React Native", "MongoDB", "Node.js"]
-    },
+
     {
       id: 5,
       image: project5,
@@ -79,19 +91,27 @@ const Project = () => {
       type: "web",
       description: "the library staff used for the library purpose",
       github: "https://github.com/hailegithubaccount/studnestDashborad",
-      live: "https://studynestdashboard.netlify.app/",
+      live: "https://studnestdashborad.onrender.com",
       tags: ["React", "tailwindcss", "Context API"]
+    },
+    {
+      id: 8,
+      image: project8,
+      title: "Zumbara",
+      type: "app",
+      description: "E-commerce mobile application for Electronics selling",
+      tags: ["React Native", "Firebase", "zustand"]
     },
   ];
 
-  const filteredProjects = activeFilter === "all" 
-    ? projects 
+  const filteredProjects = activeFilter === "all"
+    ? projects
     : projects.filter(project => project.type === activeFilter);
 
   return (
     <section className="bg-gradient-to-b from-[#0e1420] to-[#1a2035] py-20 px-6 md:px-12">
       <div className="max-w-7xl mx-auto">
-        {/* Section Header */}
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -108,29 +128,28 @@ const Project = () => {
           </p>
         </motion.div>
 
-        {/* Filter Buttons */}
+
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.2 }}
           className="flex justify-center gap-4 mb-12 flex-wrap"
         >
-          {["all", "web", "app"].map((filter) => (
+          {["all", "app", "web"].map((filter) => (
             <button
               key={filter}
               onClick={() => setActiveFilter(filter)}
-              className={`px-6 py-2 rounded-full capitalize transition-all ${
-                activeFilter === filter
-                  ? "bg-blue-600 text-white"
-                  : "bg-gray-800 text-gray-300 hover:bg-gray-700"
-              }`}
+              className={`px-6 py-2 rounded-full capitalize transition-all ${activeFilter === filter
+                ? "bg-blue-600 text-white"
+                : "bg-gray-800 text-gray-300 hover:bg-gray-700"
+                }`}
             >
               {filter === "all" ? "All Projects" : filter}
             </button>
           ))}
         </motion.div>
 
-        {/* Projects Grid */}
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredProjects.map((project) => (
             <motion.div
@@ -143,7 +162,7 @@ const Project = () => {
               onMouseLeave={() => setHoveredProject(null)}
               className="relative overflow-hidden rounded-xl bg-[#1a2035] border border-gray-800 shadow-xl"
             >
-              {/* Project Image */}
+
               <div className="h-60 overflow-hidden">
                 <img
                   src={project.image}
@@ -152,7 +171,6 @@ const Project = () => {
                 />
               </div>
 
-              {/* Project Info */}
               <div className="p-6">
                 <div className="flex justify-between items-start mb-3">
                   <h3 className="text-xl font-bold text-white">{project.title}</h3>
@@ -173,7 +191,7 @@ const Project = () => {
                   ))}
                 </div>
 
-                {/* Action Buttons */}
+
                 <div className="flex gap-4">
                   {project.live && (
                     <a
@@ -196,7 +214,7 @@ const Project = () => {
                 </div>
               </div>
 
-              {/* Hover Effect */}
+
               {hoveredProject === project.id && (
                 <motion.div
                   className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent pointer-events-none"
