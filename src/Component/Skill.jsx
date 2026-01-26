@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { FaReact, FaNodeJs, FaDatabase, FaServer, FaAws, FaGithub, FaGitAlt } from 'react-icons/fa';
 import { SiTypescript, SiNextdotjs, SiExpress, SiNetlify, SiMysql, SiMongodb, SiFlutter } from 'react-icons/si';
 import { motion } from "framer-motion";
+import { MdOutlineMobileFriendly } from "react-icons/md";
 
 function Skill() {
   const [activeTab, setActiveTab] = useState('frontend');
@@ -44,7 +45,7 @@ function Skill() {
         { name: "Git", icon: <FaGitAlt className="text-2xl text-red-500" /> },
         { name: "GitHub", icon: <FaGithub className="text-2xl text-black" /> },
         { name: "Netlify", icon: <SiNetlify className="text-2xl text-green-500" /> },
-        // { name: "Expo Application Services (EAS)", icon: <SiExpo className="text-2xl text-purple-500" /> }
+        { name: "Expo Application Services (EAS)", icon: <MdOutlineMobileFriendly className="text-2xl text-blue-500" /> }
       ]
     }
   };
