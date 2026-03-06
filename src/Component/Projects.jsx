@@ -9,7 +9,9 @@ import project5 from "../assets/fitclub.png";
 import project6 from "../assets/forHotel.png";
 import project7 from "../assets/studynestdashboard.png"
 import project8 from "../assets/image.png"
-import project9 from "../assets/Dashen.png"
+import project9 from "../assets/DashenMerchant.jpg"
+import project10 from "../assets/ethipost.jpg"
+import project11 from "../assets/choice.jpg"
 
 const Project = () => {
   const [activeFilter, setActiveFilter] = useState("all");
@@ -19,12 +21,28 @@ const Project = () => {
     {
       id: 9,
       image: project9,
-      title: "Dashen Bank Super App",
+      title: "Dashen Merchant App",
       type: "app",
-      description: "Dashen Bank Super App is a mobile application that allows users to perform various banking transactions such as checking account balance, transferring money, and paying bills.",
+      description: "Dashen Merchant App is a mobile application that allows merchants to perform various financial transactions and business operations digitally",
       tags: ["React Native", "Zustand"]
     },
-    ,
+    {
+      id: 10,
+      image: project10,
+      title: "EthioPost Agent App",
+      type: "app",
+      description: "EthioPost Agent App is a mobile application that allows agents to perform various financial transactions and business operations digitally",
+      tags: ["React Native", "Zustand"]
+    },
+
+    {
+      id: 11,
+      image: project11,
+      title: "Choice Microfinance App",
+      type: "app",
+      description: "Choice Microfinance App is a mobile application that supporting digital financial services.",
+      tags: ["React Native", "Zustand"]
+    },
     {
       id: 1,
       image: project1,
@@ -102,6 +120,16 @@ const Project = () => {
       description: "E-commerce mobile application for Electronics selling",
       tags: ["React Native", "Firebase", "zustand"]
     },
+
+
+    // {
+    //   id: 11,
+    //   image: project11,
+    //   title: "Choice Microfinance App",
+    //   type: "app",
+    //   description: "Choice Microfinance App is a mobile application that allows users to perform various financial transactions and business operations digitally",
+    //   tags: ["React Native", "Zustand"]
+    // },
   ];
 
   const filteredProjects = activeFilter === "all"

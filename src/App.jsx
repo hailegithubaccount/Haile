@@ -13,7 +13,7 @@ function App() {
     <div className='all'>
       <Header />
 
-      <div id="home"><Banner /></div>
+       <div id="home"><Banner /></div>
       <div id="about">< AboutME /></div>
        <div id="skills">< Skill /></div>
        <div id="projects"><Projects /></div>
