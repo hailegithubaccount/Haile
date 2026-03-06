@@ -51,13 +51,7 @@ function Skill() {
   };
 
   return (
-    <div className="relative overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white py-16 md:py-24 px-6 md:px-12">
-      {/* Background decorations */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute inset-0 bg-gradient-to-tr from-blue-500 via-purple-600 to-orange-500 mix-blend-overlay"></div>
-      </div>
-      <div className="absolute -top-20 -right-20 w-64 h-64 rounded-full bg-blue-500/20 blur-3xl"></div>
-      <div className="absolute -bottom-20 -left-20 w-64 h-64 rounded-full bg-purple-500/20 blur-3xl"></div>
+    <div className="bg-gray-900 text-white py-16 md:py-24 px-6 md:px-12">
 
       <div className="max-w-6xl mx-auto relative z-10">
         <motion.div
@@ -66,7 +60,7 @@ function Skill() {
           transition={{ duration: 0.5 }}
           className="mb-12"
         >
-          <h1 className="text-4xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-red-500 to-pink-500">
+          <h1 className="text-4xl font-bold mb-2 text-cyan-400">
             Professional Skill Set
           </h1>
           <p className="text-lg text-gray-300 max-w-2xl">

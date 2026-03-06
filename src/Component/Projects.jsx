@@ -137,7 +137,7 @@ const Project = () => {
     : projects.filter(project => project.type === activeFilter);
 
   return (
-    <section className="bg-gradient-to-b from-[#0e1420] to-[#1a2035] py-20 px-6 md:px-12">
+    <section className="bg-gray-900 py-20 px-6 md:px-12">
       <div className="max-w-7xl mx-auto">
 
         <motion.div
@@ -147,7 +147,7 @@ const Project = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600">
+            <span className="text-cyan-400">
               My Projects
             </span>
           </h2>
@@ -245,7 +245,7 @@ const Project = () => {
 
               {hoveredProject === project.id && (
                 <motion.div
-                  className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent pointer-events-none"
+                  className="absolute inset-0 bg-black/60 pointer-events-none"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.3 }}
