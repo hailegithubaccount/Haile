@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { ReactTyped } from "react-typed";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -28,6 +28,38 @@ const techStack = [
 function Banner() {
   const [isAwake, setIsAwake] = useState(false);
   const [currentTime, setCurrentTime] = useState(new Date());
+
+  // SMS App State
+  const [openedApp, setOpenedApp] = useState(null);
+  const [messages, setMessages] = useState([
+    { text: "Hi! I am Haile. Feel free to leave a message.", sender: 'haile', id: 1 }
+  ]);
+  const [inputText, setInputText] = useState("");
+  const messagesEndRef = useRef(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    if (openedApp === 'sms') scrollToBottom();
+  }, [messages, openedApp]);
+
+  const handleSendMessage = (e) => {
+    e.preventDefault();
+    if (!inputText.trim()) return;
+
+    setMessages(prev => [...prev, { text: inputText, sender: 'user', id: Date.now() }]);
+    setInputText("");
+
+    setTimeout(() => {
+      setMessages(prev => [...prev, {
+        text: "I’m currently unavailable to chat. Please reach me by phone at +251 927 831 856. Thank you!",
+        sender: 'haile',
+        id: Date.now() + 1
+      }]);
+    }, 1000);
+  };
 
   useEffect(() => {
     const timer = setInterval(() => setCurrentTime(new Date()), 1000);
@@ -106,8 +138,8 @@ function Banner() {
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              onClick={() => setIsAwake(!isAwake)}
-              className="relative w-[280px] md:w-[300px] h-[580px] bg-gray-900 border-[12px] border-gray-800 rounded-[3rem] shadow-[0_0_50px_rgba(6,182,212,0.15)] overflow-hidden flex flex-col ring-1 ring-gray-700 cursor-pointer group transition-transform hover:scale-[1.02]"
+              onClick={() => { if (!isAwake) setIsAwake(true); }}
+              className={`relative w-[280px] md:w-[300px] h-[580px] bg-gray-900 border-[12px] border-gray-800 rounded-[3rem] shadow-[0_0_50px_rgba(6,182,212,0.15)] overflow-hidden flex flex-col ring-1 ring-gray-700 transition-transform ${!isAwake ? 'cursor-pointer hover:scale-[1.02]' : ''}`}
             >
               
               {/* Phone Notch */}
@@ -143,6 +175,65 @@ function Banner() {
                     <div className="w-32 h-1.5 bg-white/50 rounded-full mt-3 backdrop-blur-sm shadow-lg"></div>
                   </motion.div>
                 </div>
+              ) : openedApp === 'sms' ? (
+                /* SMS App UI */
+                <motion.div 
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="w-full h-full flex flex-col bg-gray-900 absolute inset-0 z-40"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  {/* SMS Header */}
+                  <div className="w-full h-16 bg-gray-800/90 backdrop-blur-md border-b border-gray-700 flex items-center px-4 pt-4 shrink-0 shadow-sm z-10">
+                    <button 
+                      onClick={(e) => { e.stopPropagation(); setOpenedApp(null); }}
+                      className="text-cyan-400 text-sm flex items-center font-medium hover:text-cyan-300 transition-colors cursor-pointer"
+                    >
+                      <span className="mr-1 text-2xl leading-none -translate-y-[1px]">‹</span> Home
+                    </button>
+                    <div className="flex-1 flex justify-center pr-12">
+                       <div className="flex flex-col items-center cursor-default">
+                         <div className="w-6 h-6 rounded-full bg-gray-700 overflow-hidden mb-[2px]">
+                           <img src={profileImage} alt="Haile" className="w-full h-full object-cover" />
+                         </div>
+                         <span className="text-gray-200 font-semibold text-[10px] leading-none">Haile</span>
+                       </div>
+                    </div>
+                  </div>
+
+                  {/* SMS Chat Area */}
+                  <div className="flex-1 w-full overflow-y-auto p-4 space-y-4 bg-gray-900">
+                    <div className="text-center text-[10px] text-gray-500 font-medium my-2">Today {timeString}</div>
+                    {messages.map((msg) => (
+                      <div key={msg.id} className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
+                        <div className={`max-w-[85%] rounded-2xl px-4 py-2 text-xs shadow-md ${msg.sender === 'user' ? 'bg-cyan-600 text-white rounded-br-sm' : 'bg-gray-700 text-gray-200 rounded-bl-sm border border-gray-600'}`}>
+                          {msg.text}
+                        </div>
+                      </div>
+                    ))}
+                    <div ref={messagesEndRef} className="h-2" />
+                  </div>
+
+                  {/* SMS Input Area */}
+                  <div className="w-full p-3 bg-gray-800/90 backdrop-blur-md border-t border-gray-700 pb-5 shrink-0">
+                    <form onSubmit={handleSendMessage} className="flex relative">
+                      <input 
+                        type="text" 
+                        value={inputText}
+                        onChange={(e) => setInputText(e.target.value)}
+                        placeholder="Text Message"
+                        className="w-full bg-gray-900/80 text-gray-100 rounded-full pl-4 pr-10 py-2.5 text-xs outline-none border border-gray-600 focus:border-cyan-500 transition-colors placeholder-gray-500 shadow-inner"
+                      />
+                      <button 
+                        type="submit" 
+                        disabled={!inputText.trim()}
+                        className={`absolute right-1.5 top-1.5 w-7 h-7 rounded-full flex items-center justify-center transition-colors cursor-pointer ${inputText.trim() ? 'bg-cyan-500 text-gray-900 shadow-md hover:bg-cyan-400' : 'bg-gray-700 text-gray-500'}`}
+                      >
+                        <span className="text-[10px] font-bold leading-none transform -translate-y-[1px]">↑</span>
+                      </button>
+                    </form>
+                  </div>
+                </motion.div>
               ) : (
                 /* Active Screen */
                 <motion.div 
@@ -178,17 +269,15 @@ function Banner() {
                   >
                     
                     {/* Messages App */}
-                    <a 
-                      href="https://t.me/Haile6" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      title="Text Me on Telegram"
+                    <button 
+                      onClick={(e) => { e.stopPropagation(); setOpenedApp('sms'); }}
+                      title="Open Messages"
                       className="group flex flex-col items-center justify-center p-1"
                     >
                       <div className="w-11 h-11 bg-gradient-to-br from-green-400 to-emerald-600 rounded-[10px] flex items-center justify-center text-white shadow-md hover:shadow-green-500/50 group-hover:scale-[1.15] group-hover:-translate-y-2 transition-all duration-300">
                         <FontAwesomeIcon icon={faCommentDots} size="lg" />
                       </div>
-                    </a>
+                    </button>
 
                     {/* LinkedIn App */}
                     <a 
