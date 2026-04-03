@@ -8,7 +8,7 @@ import Contact from './Component/Contact';
 
 function App() {
   return (
-    <div className="all">
+    <div className="all overflow-x-hidden w-full">
       <Header />
       <div id="home"><Banner /></div>
       <div id="about"><About /></div>

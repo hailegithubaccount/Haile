@@ -139,7 +139,7 @@ function Banner() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
               onClick={() => { if (!isAwake) setIsAwake(true); }}
-              className={`relative w-[280px] md:w-[300px] h-[580px] bg-gray-900 border-[12px] border-gray-800 rounded-[3rem] shadow-[0_0_50px_rgba(6,182,212,0.15)] overflow-hidden flex flex-col ring-1 ring-gray-700 transition-transform ${!isAwake ? 'cursor-pointer hover:scale-[1.02]' : ''}`}
+              className={`relative w-full max-w-[280px] md:max-w-[300px] h-[580px] bg-gray-900 border-[12px] border-gray-800 rounded-[3rem] shadow-[0_0_50px_rgba(6,182,212,0.15)] overflow-hidden flex flex-col ring-1 ring-gray-700 transition-transform mx-auto ${!isAwake ? 'cursor-pointer hover:scale-[1.02]' : ''}`}
             >
               
               {/* Phone Notch */}
