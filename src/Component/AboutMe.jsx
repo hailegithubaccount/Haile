@@ -9,10 +9,10 @@ function About() {
             About Me
           </h1>
           <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto">
-            Passionate Front-End Developer specializing in <span className="text-blue-400">React</span> & <span className="text-blue-400">React Native</span>
+            Passionate  Developer specializing in <span className="text-blue-400">React</span> & <span className="text-blue-400">React Native</span>
           </p>
           <p className="text-lg text-gray-400 mt-4 max-w-2xl mx-auto">
-            Recent Computer Science graduate with strong interest in mobile & web development
+             Computer Science graduate with strong interest in mobile & web development
           </p>
         </div>
 
@@ -59,7 +59,12 @@ function About() {
               <h2 className="text-2xl font-bold">My Approach</h2>
             </div>
             <p className="text-gray-300 leading-relaxed">
-              As a recent graduate with six months of professional experience, I have worked on real-world projects both full-time and remotely. I contributed to the development of the Dashen Merchant App, gaining practical experience in frontend development and building user-friendly financial service interfaces. During my time at EagleLion System Technology, I also worked on the EthioPost Agent Application and the Choice Microfinance Application, supporting digital financial and agent-based service platforms. In addition, I worked remotely on Zumbara, an electronics sales application, where I contributed to building a full-stack e-commerce solution.
+              As a Computer Science graduate with over one year of professional software development experience, I have worked on real-world projects as both a React Native and Full Stack Developer. During my one year at EagleLion System Technology, I contributed to the development of several production applications, including the Dashen Merchant App, EthioPost Agent Application, and Choice Microfinance Application. Through these projects, I gained hands-on experience in building secure, user-friendly financial and agent-based service applications while collaborating with cross-functional teams in an agile development environment.
+
+Currently, I am working as a Full Stack Developer at Orbit Technology Solution PLC, where I have been developing scalable web and mobile applications for the past three months. My responsibilities include designing and implementing both frontend and backend features, integrating APIs, managing databases, and delivering end-to-end software solutions.
+
+Alongside my professional experience, I completed a capstone project during my studies that was officially recognized and certified by the Library Directorate of Jimma University. I have also participated in several software hackathons, where my team achieved a top-ranking position in one of the competitions. I combine a strong academic foundation with practical industry experience, a commitment to continuous learning, and a focus on writing clean, maintainable, and scalable code to build software solutions that create real value.
+
             </p>
             <p className="text-gray-300 leading-relaxed mt-4">
               During my academic studies, I completed a capstone project for students, certified by the Library Directorate of Jimma University. I have also participated in several hackathons, achieving a top ranking in one of three competitions with my team. My approach combines academic knowledge with practical experience, continuous learning, and writing clean, maintainable code to build solutions that make a real impact.
