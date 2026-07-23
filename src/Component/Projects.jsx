@@ -12,6 +12,12 @@ import project8 from "../assets/image.png";
 import project9 from "../assets/DashenMerchant.jpg";
 import project10 from "../assets/ethipost.jpg";
 import project11 from "../assets/choice.jpg";
+import project12 from "../assets/YH.jpg";
+import project13 from "../assets/Adoye.jpg";
+import project14 from "../assets/YH_Dashbaord.png";
+import project15 from "../assets/Adoye_dashboard.png";
+import project16 from "../assets/hair.png";   
+import project17 from "../assets/cloth.png";
 
 const projects = [
   {
@@ -41,7 +47,66 @@ const projects = [
     github: "https://github.com/user/project4",
     tags: ["React Native", "MongoDB", "Node.js"]
   },
+ 
+
+ 
   {
+    id: 8, image: project8, title: "Zumbara", type: "app",
+    description: "E-commerce mobile application for electronics selling",
+    tags: ["React Native", "Firebase", "Zustand"]
+  },
+   {
+    id: 12, image: project12, title: "Youth for Health", type: "app",
+    description: "Mobile application to empower youth with the knowledge and resources they neeed",
+    tags: ["Flutter", "Firebase", "Provider"]
+  },
+   {
+    id: 13, image: project13, title: "Adoye", type: "app",
+    description: "Mobile application to empower Girls and Women",
+    tags: ["Flutter", "Firebase", "Provider"]
+  },
+
+  //  {
+  //   id: 14, image: project14, title: "Youth for Health Dashboard", type: "web",
+  //   description: "Dashboard used by Admin to Youth for Health to manage resources and users",
+  
+  //   tags: ["React", "Tailwind CSS", "Context API"]
+  // },
+
+   {
+    id: 7, image: project7, title: "Study Nest Dashboard", type: "web",
+    description: "Dashboard used by library staff for managing resources",
+    github: "https://github.com/hailegithubaccount/studnestDashborad",
+    live: "https://studnestdashborad.onrender.com",
+    tags: ["React", "Tailwind CSS", "Context API"]
+  },
+
+   {
+    id: 14, image: project14, title: "Youth for Health Dashboard", type: "web",
+    description: "Dashboard used by Admin to Youth for Health to manage resources and users",
+    tags: ["React", "Tailwind CSS", "Context API"]
+  },
+   {
+    id: 15, image: project15, title: "Adoye Dashboard", type: "web",
+    description: "Dashboard used by Admin to Adoye to manage resources and users",
+    tags: ["React", "Tailwind CSS", "Context API"]
+  },
+   {
+    id: 16, image: project16, title: "Hare Beauty", type: "web",
+    description: "human hair selling website for online business",
+    tags: ["React", "Tailwind CSS", "Context API"],
+    github: "https://github.com/hailegithubaccount/Shally-Luxe-Collections",
+    live: "https://zahra-lemon-tau.vercel.app/",
+  },
+  {
+    id: 17, image: project17, title: "Ethiopia Clothe Store", type: "web",
+    description: "E-commerce website for selling clothing items",
+    tags: ["React", "Tailwind CSS", "Context API"],
+    live: "https://agent-6a61ce2df4d--scintillating-platypus-7af34e.netlify.app/",
+  },
+
+
+    {
     id: 4, image: project2, title: "Netflix Clone", type: "web",
     description: "Streaming platform clone with movie database",
     github: "https://github.com/hailegithubaccount/netflix-by-react.git",
@@ -69,23 +134,12 @@ const projects = [
     live: "https://forhotelcom.netlify.app/",
     tags: ["React", "Styled Components", "Context API"]
   },
-  {
-    id: 7, image: project7, title: "Study Nest Dashboard", type: "web",
-    description: "Dashboard used by library staff for managing resources",
-    github: "https://github.com/hailegithubaccount/studnestDashborad",
-    live: "https://studnestdashborad.onrender.com",
-    tags: ["React", "Tailwind CSS", "Context API"]
-  },
-  {
-    id: 8, image: project8, title: "Zumbara", type: "app",
-    description: "E-commerce mobile application for electronics selling",
-    tags: ["React Native", "Firebase", "Zustand"]
-  },
+
+ 
 ];
 
 function Projects() {
   const [filter, setFilter] = useState("all");
-
   const filtered = filter === "all" ? projects : projects.filter(p => p.type === filter);
 
   return (
