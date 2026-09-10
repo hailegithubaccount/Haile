@@ -1,6 +1,17 @@
 import { FaMobileAlt, FaLayerGroup, FaCode } from "react-icons/fa";
 
-function About() {
+function About({ onRobotInspect }) {
+  const handleMouseEnter = (title, details) => {
+    if (onRobotInspect) {
+      onRobotInspect(`${title}: ${details}`, title);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (onRobotInspect) {
+      onRobotInspect(null, null);
+    }
+  };
   return (
     <div className="bg-zinc-950 text-white py-20 px-6 md:px-12">
       <div className="max-w-6xl mx-auto">
@@ -17,7 +28,11 @@ function About() {
         </div> 
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="bg-zinc-900/90 p-8 rounded-xl border border-zinc-800 hover:border-zinc-700 transition-colors shadow-sm">
+          <div 
+            onMouseEnter={() => handleMouseEnter("Full Stack Web Architecture", "Haile architects and engineers end-to-end web applications combining intuitive React/TypeScript frontend interfaces with Node.js/NestJS APIs and PostgreSQL/MongoDB databases.")}
+            onMouseLeave={handleMouseLeave}
+            className="bg-zinc-900/90 p-8 rounded-xl border border-zinc-800 hover:border-zinc-700 transition-colors shadow-sm cursor-pointer"
+          >
             <div className="flex items-center gap-4 mb-6">
               <div className="p-3 rounded-lg bg-zinc-800 text-zinc-200 border border-zinc-700/50">
                 <FaLayerGroup className="text-xl" />
@@ -35,7 +50,11 @@ function About() {
             </div>
           </div>
 
-          <div className="bg-zinc-900/90 p-8 rounded-xl border border-zinc-800 hover:border-zinc-700 transition-colors shadow-sm">
+          <div 
+            onMouseEnter={() => handleMouseEnter("Mobile App Engineering", "Haile develops cross-platform iOS & Android mobile apps using React Native and Flutter with native hardware features, biometric security, and offline data caching.")}
+            onMouseLeave={handleMouseLeave}
+            className="bg-zinc-900/90 p-8 rounded-xl border border-zinc-800 hover:border-zinc-700 transition-colors shadow-sm cursor-pointer"
+          >
             <div className="flex items-center gap-4 mb-6">
               <div className="p-3 rounded-lg bg-zinc-800 text-zinc-200 border border-zinc-700/50">
                 <FaMobileAlt className="text-xl" />

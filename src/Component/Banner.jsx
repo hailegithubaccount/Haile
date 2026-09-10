@@ -25,7 +25,7 @@ const techStack = [
   { icon: <FaServer className="text-2xl text-zinc-200" />, name: "NestJS / Express", bg: "bg-zinc-800/80" },
 ];
 
-function Banner() {
+function Banner({ onRobotInspect }) {
   const [isAwake, setIsAwake] = useState(true);
   const [currentTime, setCurrentTime] = useState(new Date());
 

@@ -277,37 +277,22 @@ const projects = [
   }
 ];
 
-function Projects() {
+function Projects({ onRobotInspect }) {
   const [filter, setFilter] = useState("all");
   const [hoveredProject, setHoveredProject] = useState(null);
   const [selectedModalProject, setSelectedModalProject] = useState(null);
-  const [typedMessage, setTypedMessage] = useState("");
 
   const appProjects = projects.filter((p) => p.type === "app");
   const webProjects = projects.filter((p) => p.type === "web");
 
-  // Dynamic Typewriter Effect for Robot Speech Bubble
+  // Send hovered project info to global RobotAssistant
   useEffect(() => {
-    let fullText = "";
-    if (hoveredProject) {
-      fullText = `${hoveredProject.title}: ${hoveredProject.deepDescription}`;
-    } else {
-      fullText = "Hello! Move your mouse cursor over any project card on the left to read full technical specs & architecture.";
+    if (hoveredProject && onRobotInspect) {
+      onRobotInspect(`${hoveredProject.title}: ${hoveredProject.deepDescription}`, hoveredProject.title);
+    } else if (onRobotInspect) {
+      onRobotInspect(null, null);
     }
-
-    setTypedMessage("");
-    let index = 0;
-    const interval = setInterval(() => {
-      if (index < fullText.length) {
-        setTypedMessage(fullText.slice(0, index + 1));
-        index++;
-      } else {
-        clearInterval(interval);
-      }
-    }, 12);
-
-    return () => clearInterval(interval);
-  }, [hoveredProject]);
+  }, [hoveredProject, onRobotInspect]);
 
   return (
     <section className="bg-zinc-950 py-20 px-4 sm:px-6 md:px-12 text-white border-t border-zinc-900 relative">
@@ -515,62 +500,7 @@ function Projects() {
         )}
       </div>
 
-      {/* ============================================================ */}
-      {/* FLOATING RIGHT-SIDE STANDALONE ROBOT & SPEECH BOX (TRANSPARENT) */}
-      {/* ============================================================ */}
-      <div className="fixed bottom-6 right-4 sm:right-8 z-50 flex flex-col items-end pointer-events-none max-w-sm sm:max-w-md">
-        
-        {/* Connected Speech / Message Box */}
-        <motion.div
-          initial={{ opacity: 0, y: 15, scale: 0.95 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          className="pointer-events-auto bg-zinc-900 border border-zinc-700 rounded-2xl p-3.5 sm:p-4 mb-3 shadow-2xl backdrop-blur-md relative text-white"
-        >
-          {/* Pointer Arrow facing down to robot */}
-          <div className="absolute -bottom-2 right-8 w-3.5 h-3.5 bg-zinc-900 border-r border-b border-zinc-700 rotate-45"></div>
 
-          {/* Speech Box Header */}
-          <div className="flex items-center justify-between gap-2 mb-2 pb-1.5 border-b border-zinc-800">
-            <div className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-white animate-pulse"></span>
-              <span className="text-[11px] font-semibold uppercase tracking-wider text-white flex items-center gap-1.5">
-                <FontAwesomeIcon icon={faCommentDots} />
-                {hoveredProject ? hoveredProject.title : "Project Inspector"}
-              </span>
-            </div>
-            {hoveredProject && (
-              <span className="text-[9px] font-mono bg-zinc-800 text-zinc-300 border border-zinc-700 px-1.5 py-0.5 rounded uppercase">
-                {hoveredProject.type}
-              </span>
-            )}
-          </div>
-
-          {/* Dynamic Typed Message Content */}
-          <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed min-h-[44px]">
-            {typedMessage}
-            <span className="inline-block w-1.5 h-3 bg-white ml-1 animate-pulse align-middle"></span>
-          </p>
-
-          {hoveredProject && (
-            <div className="mt-2 pt-1.5 border-t border-zinc-800/80 flex items-center justify-between text-[10px] text-zinc-400">
-              <span>Click card for full details</span>
-            </div>
-          )}
-        </motion.div>
-
-        {/* Floating Standalone Robot Image (Dynamically Filtered Transparent PNG) */}
-        <motion.div
-          animate={{ y: [0, -8, 0] }}
-          transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
-          className="pointer-events-auto cursor-pointer"
-        >
-          <TransparentRobot
-            src={robotBot}
-            className="w-16 h-16 sm:w-20 sm:h-20 object-contain drop-shadow-[0_10px_20px_rgba(0,0,0,0.8)]"
-          />
-        </motion.div>
-
-      </div>
 
       {/* ============================================================ */}
       {/* MONOCHROME DEEP INSPECTION MODAL                             */}

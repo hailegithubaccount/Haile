@@ -5,7 +5,19 @@ const contactInfo = [
   { icon: "📱", label: "Phone", value: "+251 927 83 18 56" },
 ];
 
-function Contact() {
+function Contact({ onRobotInspect }) {
+  const handleMouseEnter = (label, value) => {
+    if (onRobotInspect) {
+      onRobotInspect(`${label}: ${value}. Contact Haile directly to discuss projects or job opportunities.`, label);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (onRobotInspect) {
+      onRobotInspect(null, null);
+    }
+  };
+
   return (
     <section className="min-h-screen bg-zinc-950 text-white py-20 px-6 md:px-12">
       <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-12 items-center">
@@ -16,13 +28,18 @@ function Contact() {
 
           <div className="space-y-3 pt-2">
             {contactInfo.map((item, i) => (
-              <div key={i} className="flex items-center gap-4 p-3.5 rounded-lg bg-zinc-900/90 border border-zinc-800 hover:border-zinc-700 transition-colors shadow-sm">
-                <div className="w-10 h-10 flex items-center justify-center bg-zinc-800 rounded-lg text-lg text-zinc-200 border border-zinc-700/50">
+              <div 
+                key={i} 
+                onMouseEnter={() => handleMouseEnter(item.label, item.value)}
+                onMouseLeave={handleMouseLeave}
+                className="flex items-center gap-4 p-3.5 rounded-lg bg-zinc-900/90 border border-zinc-800 hover:border-zinc-700 transition-colors shadow-sm cursor-pointer group"
+              >
+                <div className="w-10 h-10 flex items-center justify-center bg-zinc-800 rounded-lg text-lg text-zinc-200 border border-zinc-700/50 group-hover:scale-105 transition-transform">
                   {item.icon}
                 </div>
                 <div>
                   <p className="text-xs text-zinc-500 tracking-tight">{item.label}</p>
-                  <p className="text-sm font-medium text-zinc-200 tracking-tight">{item.value}</p>
+                  <p className="text-sm font-medium text-zinc-200 tracking-tight group-hover:text-white transition-colors">{item.value}</p>
                 </div>
               </div>
             ))}

@@ -1,7 +1,28 @@
 import { useState } from 'react';
-import { FaReact, FaNodeJs, FaDatabase, FaServer, FaAws, FaGithub, FaGitAlt, FaMobileAlt } from 'react-icons/fa';
+import { FaReact, FaNodeJs, FaDatabase, FaServer, FaGithub, FaMobileAlt } from 'react-icons/fa';
 import { SiTypescript, SiNextdotjs, SiExpress, SiNetlify, SiMysql, SiMongodb, SiFlutter, SiFirebase, SiTailwindcss } from 'react-icons/si';
 import { MdOutlineMobileFriendly } from "react-icons/md";
+
+const skillDescriptions = {
+  "React Native": "Haile builds production iOS & Android mobile apps with React Native, state management, and offline-first data caching.",
+  "Flutter": "Used by Haile to engineer cross-platform mobile apps like Youth for Health and Adoye with clean Provider state patterns.",
+  "Expo": "Enables rapid prototyping, cross-platform mobile development, and seamless testing on physical devices.",
+  "EAS Build & Deploy": "Haile configures automated Expo Application Services (EAS) build pipelines and over-the-air (OTA) update deployments.",
+  "Firebase Mobile SDK": "Integrated by Haile for Firestore real-time databases, push notifications, and biometric user authentication.",
+  "React": "Haile builds high-performance web platforms, dynamic administrative dashboards, and component-based user interfaces.",
+  "TypeScript": "Enforces strict static typing across mobile apps and backend APIs, preventing runtime errors and improving code maintainability.",
+  "Next.js": "Used by Haile to build server-side rendered (SSR) web applications with optimized SEO and fast page load speeds.",
+  "Tailwind CSS": "Haile crafts modern, responsive, dark-mode web user interfaces with clean utility-first CSS styling.",
+  "Node.js": "Powers Haile's backend server microservices, REST APIs, and real-time asynchronous data pipelines.",
+  "NestJS": "Scalable, enterprise Node.js framework used by Haile to build structured, modular backend applications.",
+  "Express": "Lightweight web framework utilized by Haile for fast API endpoints and middleware request routing.",
+  "RESTful APIs": "Haile designs clean RESTful API contracts with JWT authentication and secure request validation.",
+  "MySQL": "Relational database used for structured data management, relational table joins, and transaction security.",
+  "MongoDB": "NoSQL document database integrated by Haile for flexible schemas, digital library resources, and fast document queries.",
+  "Firebase": "Used for real-time cloud data sync, user authentication, storage, and serverless backends.",
+  "Git & GitHub": "Haile utilizes Git version control, branch management, pull requests, and collaborative code repositories.",
+  "Netlify": "Deployment platform utilized by Haile for automated continuous integration and static site hosting."
+};
 
 const skillCategories = {
   mobile: {
@@ -48,8 +69,21 @@ const skillCategories = {
   }
 };
 
-function Skill() {
+function Skill({ onRobotInspect }) {
   const [activeTab, setActiveTab] = useState('mobile');
+
+  const handleMouseEnter = (skillName) => {
+    if (onRobotInspect) {
+      const desc = skillDescriptions[skillName] || `${skillName} technology used by Haile in production.`;
+      onRobotInspect(`${skillName}: ${desc}`, skillName);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (onRobotInspect) {
+      onRobotInspect(null, null);
+    }
+  };
 
   return (
     <div className="bg-zinc-950 text-white py-20 px-6 md:px-12">
@@ -88,10 +122,12 @@ function Skill() {
               {skillCategories[activeTab].items.map((skill, i) => (
                 <div
                   key={i}
-                  className="flex items-center gap-3 p-3.5 bg-zinc-950 rounded-lg border border-zinc-800 hover:border-zinc-700 transition-colors"
+                  onMouseEnter={() => handleMouseEnter(skill.name)}
+                  onMouseLeave={handleMouseLeave}
+                  className="flex items-center gap-3 p-3.5 bg-zinc-950 rounded-lg border border-zinc-800 hover:border-zinc-700 transition-colors cursor-pointer group"
                 >
-                  <div className="flex-shrink-0">{skill.icon}</div>
-                  <span className="text-sm font-medium text-zinc-200 tracking-tight">{skill.name}</span>
+                  <div className="flex-shrink-0 group-hover:scale-110 transition-transform">{skill.icon}</div>
+                  <span className="text-sm font-medium text-zinc-200 tracking-tight group-hover:text-white transition-colors">{skill.name}</span>
                 </div>
               ))}
             </div>
