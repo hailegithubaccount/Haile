@@ -1,74 +1,115 @@
-import { FaMobileAlt, FaPaintBrush, FaCode } from "react-icons/fa";
+import { FaMobileAlt, FaLayerGroup, FaCode } from "react-icons/fa";
 
 function About() {
   return (
-    <div className="bg-gray-900 text-white py-20 px-6 md:px-12">
+    <div className="bg-zinc-950 text-white py-20 px-6 md:px-12">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 text-cyan-400">
+          <h1 className="text-3xl md:text-4xl font-bold mb-3 text-white tracking-tight">
             About Me
           </h1>
-          <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto">
-            Passionate  Developer specializing in <span className="text-blue-400">React</span> & <span className="text-blue-400">React Native</span>
+          <p className="text-lg md:text-xl text-zinc-300 max-w-3xl mx-auto tracking-tight font-medium">
+            Full Stack & Mobile Application Developer
           </p>
-          <p className="text-lg text-gray-400 mt-4 max-w-2xl mx-auto">
-             Computer Science graduate with strong interest in mobile & web development
+          <p className="text-base text-zinc-400 mt-2 max-w-2xl mx-auto tracking-tight">
+            Computer Science graduate specializing in building scalable web platforms and high-performance mobile applications.
           </p>
-        </div>
+        </div> 
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="bg-gray-800 p-8 rounded-xl border border-gray-700 hover:border-blue-500/30 transition-all">
+          <div className="bg-zinc-900/90 p-8 rounded-xl border border-zinc-800 hover:border-zinc-700 transition-colors shadow-sm">
             <div className="flex items-center gap-4 mb-6">
-              <div className="p-3 rounded-full bg-blue-500/10 text-blue-400">
-                <FaPaintBrush className="text-2xl" />
+              <div className="p-3 rounded-lg bg-zinc-800 text-zinc-200 border border-zinc-700/50">
+                <FaLayerGroup className="text-xl" />
               </div>
-              <h2 className="text-2xl font-bold">Clean Interfaces</h2>
+              <h2 className="text-xl font-bold text-white tracking-tight">Full Stack Web Development</h2>
             </div>
-            <p className="text-gray-300 leading-relaxed">
-              I design pixel-perfect, responsive interfaces using modern React practices. My focus is on creating intuitive user experiences with clean code architecture and smooth animations.
+            <p className="text-zinc-300 text-sm leading-relaxed">
+              I architect and engineer scalable end-to-end web applications, combining intuitive frontend interfaces with high-performance backend systems, secure APIs, and robust database management.
             </p>
             <div className="mt-6 flex flex-wrap gap-2">
-              <span className="px-3 py-1 bg-blue-500/10 text-blue-400 rounded-full text-sm">React</span>
-              <span className="px-3 py-1 bg-purple-500/10 text-purple-400 rounded-full text-sm">Tailwind CSS</span>
-              <span className="px-3 py-1 bg-green-500/10 text-green-400 rounded-full text-sm">Framer Motion</span>
+              <span className="px-3 py-1 bg-zinc-800 text-zinc-300 border border-zinc-700/60 rounded-md text-xs font-medium">React</span>
+              <span className="px-3 py-1 bg-zinc-800 text-zinc-300 border border-zinc-700/60 rounded-md text-xs font-medium">TypeScript</span>
+              <span className="px-3 py-1 bg-zinc-800 text-zinc-300 border border-zinc-700/60 rounded-md text-xs font-medium">Node.js / NestJS</span>
+              <span className="px-3 py-1 bg-zinc-800 text-zinc-300 border border-zinc-700/60 rounded-md text-xs font-medium">SQL & MongoDB</span>
             </div>
           </div>
 
-          <div className="bg-gray-800 p-8 rounded-xl border border-gray-700 hover:border-blue-500/30 transition-all">
+          <div className="bg-zinc-900/90 p-8 rounded-xl border border-zinc-800 hover:border-zinc-700 transition-colors shadow-sm">
             <div className="flex items-center gap-4 mb-6">
-              <div className="p-3 rounded-full bg-green-500/10 text-green-400">
-                <FaMobileAlt className="text-2xl" />
+              <div className="p-3 rounded-lg bg-zinc-800 text-zinc-200 border border-zinc-700/50">
+                <FaMobileAlt className="text-xl" />
               </div>
-              <h2 className="text-2xl font-bold">Mobile Apps</h2>
+              <h2 className="text-xl font-bold text-white tracking-tight">Mobile Application Development</h2>
             </div>
-            <p className="text-gray-300 leading-relaxed">
-              I build high-performance cross-platform mobile applications with React Native. From state management to native modules, I create apps that feel at home on both iOS and Android.
+            <p className="text-zinc-300 text-sm leading-relaxed">
+              I develop responsive, high-performance cross-platform mobile apps for iOS and Android using React Native and Flutter. From robust state management to native hardware integrations, I build smooth user experiences.
             </p>
             <div className="mt-6 flex flex-wrap gap-2">
-              <span className="px-3 py-1 bg-blue-500/10 text-blue-400 rounded-full text-sm">React Native</span>
-              <span className="px-3 py-1 bg-yellow-500/10 text-yellow-400 rounded-full text-sm">Expo</span>
-              <span className="px-3 py-1 bg-red-500/10 text-red-400 rounded-full text-sm">Firebase</span>
+              <span className="px-3 py-1 bg-zinc-800 text-zinc-300 border border-zinc-700/60 rounded-md text-xs font-medium">React Native</span>
+              <span className="px-3 py-1 bg-zinc-800 text-zinc-300 border border-zinc-700/60 rounded-md text-xs font-medium">Flutter</span>
+              <span className="px-3 py-1 bg-zinc-800 text-zinc-300 border border-zinc-700/60 rounded-md text-xs font-medium">Expo</span>
+              <span className="px-3 py-1 bg-zinc-800 text-zinc-300 border border-zinc-700/60 rounded-md text-xs font-medium">Firebase</span>
             </div>
           </div>
 
-          <div className="md:col-span-2 bg-gray-800 p-8 rounded-xl border border-gray-700 hover:border-blue-500/30 transition-all">
+          <div className="md:col-span-2 bg-zinc-900/90 p-8 rounded-xl border border-zinc-800 hover:border-zinc-700 transition-colors shadow-sm">
             <div className="flex items-center gap-4 mb-6">
-              <div className="p-3 rounded-full bg-purple-500/10 text-purple-400">
-                <FaCode className="text-2xl" />
+              <div className="p-3 rounded-lg bg-zinc-800 text-zinc-200 border border-zinc-700/50">
+                <FaCode className="text-xl" />
               </div>
-              <h2 className="text-2xl font-bold">My Approach</h2>
+              <h2 className="text-xl font-bold text-white tracking-tight">Work Experience & Milestones</h2>
             </div>
-            <p className="text-gray-300 leading-relaxed">
-              As a Computer Science graduate with over one year of professional software development experience, I have worked on real-world projects as both a React Native and Full Stack Developer. During my one year at EagleLion System Technology, I contributed to the development of several production applications, including the Dashen Merchant App, EthioPost Agent Application, and Choice Microfinance Application. Through these projects, I gained hands-on experience in building secure, user-friendly financial and agent-based service applications while collaborating with cross-functional teams in an agile development environment.
 
-Currently, I am working as a Full Stack Developer at Orbit Technology Solution PLC, where I have been developing scalable web and mobile applications for the past three months. My responsibilities include designing and implementing both frontend and backend features, integrating APIs, managing databases, and delivering end-to-end software solutions.
+            {/* Career Timeline */}
+            <div className="space-y-6 relative before:absolute before:inset-0 before:left-3.5 before:w-0.5 before:bg-zinc-800">
+              
+              {/* Timeline Item 1 */}
+              <div className="relative flex items-start gap-4 pl-8">
+                <span className="absolute left-2 top-1.5 w-3 h-3 rounded-full bg-emerald-500 ring-4 ring-zinc-950"></span>
+                <div className="flex-1">
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-1">
+                    <h3 className="text-base font-bold text-white tracking-tight">Full Stack Developer</h3>
+                    <span className="text-xs text-zinc-400 font-medium bg-zinc-800/80 px-2.5 py-0.5 rounded border border-zinc-700/60 w-fit mt-1 sm:mt-0">Present</span>
+                  </div>
+                  <div className="text-xs font-semibold text-zinc-300 mb-2">Orbit Technology Solution PLC</div>
+                  <p className="text-zinc-400 text-sm leading-relaxed">
+                    Engineering scalable web and mobile software systems. Designing full-stack system architecture, implementing reactive frontend UIs, integrating secure RESTful APIs, and managing database layers.
+                  </p>
+                </div>
+              </div>
 
-Alongside my professional experience, I completed a capstone project during my studies that was officially recognized and certified by the Library Directorate of Jimma University. I have also participated in several software hackathons, where my team achieved a top-ranking position in one of the competitions. I combine a strong academic foundation with practical industry experience, a commitment to continuous learning, and a focus on writing clean, maintainable, and scalable code to build software solutions that create real value.
+              {/* Timeline Item 2 */}
+              <div className="relative flex items-start gap-4 pl-8">
+                <span className="absolute left-2 top-1.5 w-3 h-3 rounded-full bg-blue-500 ring-4 ring-zinc-950"></span>
+                <div className="flex-1">
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-1">
+                    <h3 className="text-base font-bold text-white tracking-tight">Mobile & Full Stack Developer</h3>
+                    <span className="text-xs text-zinc-400 font-medium bg-zinc-800/80 px-2.5 py-0.5 rounded border border-zinc-700/60 w-fit mt-1 sm:mt-0">1 Year</span>
+                  </div>
+                  <div className="text-xs font-semibold text-zinc-300 mb-2">EagleLion System Technology</div>
+                  <p className="text-zinc-400 text-sm leading-relaxed">
+                    Contributed to high-volume production fintech and banking applications including <strong className="text-zinc-200 font-medium">Dashen Super App</strong>, <strong className="text-zinc-200 font-medium">Dashen Merchant App</strong>, <strong className="text-zinc-200 font-medium">EthioPost Agent App</strong>, and <strong className="text-zinc-200 font-medium">Choice Microfinance</strong>.
+                  </p>
+                </div>
+              </div>
 
-            </p>
-            <p className="text-gray-300 leading-relaxed mt-4">
-              During my academic studies, I completed a capstone project for students, certified by the Library Directorate of Jimma University. I have also participated in several hackathons, achieving a top ranking in one of three competitions with my team. My approach combines academic knowledge with practical experience, continuous learning, and writing clean, maintainable code to build solutions that make a real impact.
-            </p>
+              {/* Timeline Item 3 */}
+              <div className="relative flex items-start gap-4 pl-8">
+                <span className="absolute left-2 top-1.5 w-3 h-3 rounded-full bg-purple-500 ring-4 ring-zinc-950"></span>
+                <div className="flex-1">
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-1">
+                    <h3 className="text-base font-bold text-white tracking-tight">B.Sc. in Computer Science</h3>
+                    <span className="text-xs text-zinc-400 font-medium bg-zinc-800/80 px-2.5 py-0.5 rounded border border-zinc-700/60 w-fit mt-1 sm:mt-0">Graduate</span>
+                  </div>
+                  <div className="text-xs font-semibold text-zinc-300 mb-2">Jimma University</div>
+                  <p className="text-zinc-400 text-sm leading-relaxed">
+                    Graduated with a strong software engineering foundation. Completed a recognized capstone project officially certified by the Library Directorate of Jimma University and achieved top rankings in competitive software hackathons.
+                  </p>
+                </div>
+              </div>
+
+            </div>
           </div>
         </div>
       </div>

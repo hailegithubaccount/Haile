@@ -17,32 +17,39 @@ const socials = [
 ];
 
 const techStack = [
-  { icon: <FaReact className="text-3xl" />, name: "React", color: "text-blue-400", bg: "bg-blue-400/10" },
-  { icon: <SiTypescript className="text-3xl" />, name: "TypeScript", color: "text-blue-600", bg: "bg-blue-600/10" },
-  { icon: <FaNodeJs className="text-3xl" />, name: "Node.js", color: "text-green-500", bg: "bg-green-500/10" },
-  { icon: <FaMobileAlt className="text-3xl" />, name: "React Native", color: "text-orange-400", bg: "bg-orange-400/10" },
-  { icon: <SiVite className="text-3xl" />, name: "Vite", color: "text-yellow-400", bg: "bg-yellow-400/10" },
-  { icon: <FaServer className="text-3xl" />, name: "Express", color: "text-green-400", bg: "bg-green-400/10" },
+  { icon: <FaReact className="text-2xl text-zinc-200" />, name: "React", bg: "bg-zinc-800/80" },
+  { icon: <SiTypescript className="text-2xl text-zinc-200" />, name: "TypeScript", bg: "bg-zinc-800/80" },
+  { icon: <FaNodeJs className="text-2xl text-zinc-200" />, name: "Node.js", bg: "bg-zinc-800/80" },
+  { icon: <FaMobileAlt className="text-2xl text-zinc-200" />, name: "React Native", bg: "bg-zinc-800/80" },
+  { icon: <SiVite className="text-2xl text-zinc-200" />, name: "Vite", bg: "bg-zinc-800/80" },
+  { icon: <FaServer className="text-2xl text-zinc-200" />, name: "NestJS / Express", bg: "bg-zinc-800/80" },
 ];
 
 function Banner() {
-  const [isAwake, setIsAwake] = useState(false);
+  const [isAwake, setIsAwake] = useState(true);
   const [currentTime, setCurrentTime] = useState(new Date());
 
-  // SMS App State
-  const [openedApp, setOpenedApp] = useState(null);
+  // SMS App State (opened by default on page load)
+  const [openedApp, setOpenedApp] = useState('sms');
   const [messages, setMessages] = useState([
     { text: "Hi! I am Haile. Feel free to leave a message.", sender: 'haile', id: 1 }
   ]);
   const [inputText, setInputText] = useState("");
-  const messagesEndRef = useRef(null);
+  const chatContainerRef = useRef(null);
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTo({
+        top: chatContainerRef.current.scrollHeight,
+        behavior: "smooth"
+      });
+    }
   };
 
   useEffect(() => {
-    if (openedApp === 'sms') scrollToBottom();
+    if (openedApp === 'sms') {
+      scrollToBottom();
+    }
   }, [messages, openedApp]);
 
   const handleSendMessage = (e) => {
@@ -79,45 +86,44 @@ function Banner() {
   };
 
   return (
-    <div className="bg-gray-900 text-white py-16 md:py-24 px-6 md:px-12 overflow-hidden">
+    <div className="bg-zinc-950 text-white py-16 md:py-24 px-6 md:px-12 overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-8">
 
           {/* Text Content (Left side on lg) */}
-          <div className="flex-1 space-y-8">
+          <div className="flex-1 space-y-6">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
-              className="space-y-6"
+              className="space-y-4"
             >
               <div>
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-                  <span className="block">Hello! I'm</span>
-                  <span className="text-cyan-400">
+                <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-[40px] font-bold leading-tight tracking-tight text-white">
+                  <span className="block text-zinc-400 font-medium text-lg md:text-xl mb-1">Hello, I'm</span>
+                  <span className="inline-block whitespace-nowrap">
                     <ReactTyped
-                      strings={["Haile Michael Eshetu", "React Developer", "React Native Expert"]}
+                      strings={["Haile Michael Eshetu", "Full Stack Developer", "Mobile Application Developer"]}
                       typeSpeed={50}
                       backSpeed={30}
                       loop
                     />
                   </span>
                 </h1>
-                <h2 className="text-xl md:text-2xl text-gray-300 mt-4">
-                  Web & Mobile App Builder
+                <h2 className="text-base sm:text-lg md:text-xl font-medium text-zinc-300 mt-2 tracking-tight whitespace-nowrap">
+                  Full Stack & Mobile Application Developer
                 </h2>
               </div>
 
-              <p className="text-gray-400 max-w-lg text-lg leading-relaxed">
-                I build fast, modern web and mobile apps with React, Vite, and React Native — combining clean
-                architecture with responsive design to create smooth and engaging user experiences.
+              <p className="text-zinc-400 max-w-lg text-base md:text-lg leading-relaxed tracking-tight">
+                Building scalable full-stack web platforms and high-performance cross-platform mobile apps with clean architecture, robust APIs, and modern UI.
               </p>
             </motion.div>
 
             <div className="flex gap-6">
               {socials.map((s, i) => (
                 <a key={i} href={s.url} target="_blank" rel="noopener noreferrer"
-                  className="hover:text-cyan-400 transition-colors hover:-translate-y-1">
+                  className="text-zinc-400 hover:text-white transition-colors hover:-translate-y-1">
                   <FontAwesomeIcon icon={s.icon} size="lg" />
                 </a>
               ))}
@@ -125,7 +131,7 @@ function Banner() {
 
             <button
               onClick={handleDownload}
-              className="flex items-center gap-2 px-6 py-3 bg-cyan-500 text-gray-900 rounded-lg font-bold hover:bg-cyan-400 transition-all shadow-[0_0_15px_rgba(6,182,212,0.4)]"
+              className="flex items-center gap-2 px-6 py-3 bg-white text-zinc-950 rounded-lg font-semibold hover:bg-zinc-200 transition-colors shadow-sm tracking-tight"
             >
               <FontAwesomeIcon icon={faDownload} />
               Download CV
@@ -139,7 +145,7 @@ function Banner() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
               onClick={() => { if (!isAwake) setIsAwake(true); }}
-              className={`relative w-full max-w-[280px] md:max-w-[300px] h-[580px] bg-gray-900 border-[12px] border-gray-800 rounded-[3rem] shadow-[0_0_50px_rgba(6,182,212,0.15)] overflow-hidden flex flex-col ring-1 ring-gray-700 transition-transform mx-auto ${!isAwake ? 'cursor-pointer hover:scale-[1.02]' : ''}`}
+              className={`relative w-full max-w-[280px] md:max-w-[300px] h-[580px] bg-zinc-900 border-[12px] border-zinc-800 rounded-[3rem] shadow-2xl overflow-hidden flex flex-col ring-1 ring-zinc-700 transition-transform mx-auto ${!isAwake ? 'cursor-pointer hover:scale-[1.02]' : ''}`}
             >
               
               {/* Phone Notch */}
@@ -162,8 +168,8 @@ function Banner() {
                     animate={{ opacity: 1, y: 0 }} 
                     className="relative z-10 flex flex-col items-center mt-[-60px]"
                   >
-                    <div className="text-white text-[64px] font-light mb-1 tracking-wider drop-shadow-lg leading-none">{timeString}</div>
-                    <div className="text-gray-200 text-sm mb-12 drop-shadow-md font-medium">{dateString}</div>
+                    <div className="text-white text-[64px] font-light mb-1 tracking-wider leading-none">{timeString}</div>
+                    <div className="text-gray-200 text-sm mb-12 font-medium">{dateString}</div>
                   </motion.div>
                   
                   <motion.div 
@@ -171,8 +177,8 @@ function Banner() {
                     transition={{ repeat: Infinity, duration: 2.5 }}
                     className="absolute bottom-8 flex flex-col items-center z-10"
                   >
-                    <span className="text-xs text-gray-200 font-semibold tracking-wide drop-shadow-md">Tap to unlock</span>
-                    <div className="w-32 h-1.5 bg-white/50 rounded-full mt-3 backdrop-blur-sm shadow-lg"></div>
+                    <span className="text-xs text-gray-200 font-semibold tracking-wide">Tap to unlock</span>
+                    <div className="w-32 h-1.5 bg-white/50 rounded-full mt-3 shadow-sm"></div>
                   </motion.div>
                 </div>
               ) : openedApp === 'sms' ? (
@@ -182,52 +188,50 @@ function Banner() {
                   animate={{ opacity: 1, scale: 1 }}
                   className="w-full h-full flex flex-col bg-gray-900 absolute inset-0 z-40"
                   onClick={(e) => e.stopPropagation()}
-                >
-                  {/* SMS Header */}
-                  <div className="w-full h-16 bg-gray-800/90 backdrop-blur-md border-b border-gray-700 flex items-center px-4 pt-4 shrink-0 shadow-sm z-10">
+                >                  {/* SMS Header */}
+                  <div className="w-full h-16 bg-zinc-800/90 backdrop-blur-md border-b border-zinc-700 flex items-center px-4 pt-4 shrink-0 shadow-sm z-10">
                     <button 
                       onClick={(e) => { e.stopPropagation(); setOpenedApp(null); }}
-                      className="text-cyan-400 text-sm flex items-center font-medium hover:text-cyan-300 transition-colors cursor-pointer"
+                      className="text-blue-400 text-sm flex items-center font-medium hover:text-blue-300 transition-colors cursor-pointer"
                     >
                       <span className="mr-1 text-2xl leading-none -translate-y-[1px]">‹</span> Home
                     </button>
                     <div className="flex-1 flex justify-center pr-12">
                        <div className="flex flex-col items-center cursor-default">
-                         <div className="w-6 h-6 rounded-full bg-gray-700 overflow-hidden mb-[2px]">
+                         <div className="w-6 h-6 rounded-full bg-zinc-700 overflow-hidden mb-[2px]">
                            <img src={profileImage} alt="Haile" className="w-full h-full object-cover" />
                          </div>
-                         <span className="text-gray-200 font-semibold text-[10px] leading-none">Haile</span>
+                         <span className="text-zinc-200 font-semibold text-[10px] leading-none">Haile</span>
                        </div>
                     </div>
                   </div>
 
                   {/* SMS Chat Area */}
-                  <div className="flex-1 w-full overflow-y-auto p-4 space-y-4 bg-gray-900">
-                    <div className="text-center text-[10px] text-gray-500 font-medium my-2">Today {timeString}</div>
+                  <div ref={chatContainerRef} className="flex-1 w-full overflow-y-auto p-4 space-y-4 bg-zinc-900 scroll-smooth">
+                    <div className="text-center text-[10px] text-zinc-500 font-medium my-2">Today {timeString}</div>
                     {messages.map((msg) => (
                       <div key={msg.id} className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
-                        <div className={`max-w-[85%] rounded-2xl px-4 py-2 text-xs shadow-md ${msg.sender === 'user' ? 'bg-cyan-600 text-white rounded-br-sm' : 'bg-gray-700 text-gray-200 rounded-bl-sm border border-gray-600'}`}>
+                        <div className={`max-w-[85%] rounded-2xl px-4 py-2 text-xs shadow-md ${msg.sender === 'user' ? 'bg-blue-600 text-white rounded-br-sm' : 'bg-zinc-800 text-zinc-200 rounded-bl-sm border border-zinc-700'}`}>
                           {msg.text}
                         </div>
                       </div>
                     ))}
-                    <div ref={messagesEndRef} className="h-2" />
                   </div>
 
                   {/* SMS Input Area */}
-                  <div className="w-full p-3 bg-gray-800/90 backdrop-blur-md border-t border-gray-700 pb-5 shrink-0">
+                  <div className="w-full p-3 bg-zinc-800/90 backdrop-blur-md border-t border-zinc-700 pb-5 shrink-0">
                     <form onSubmit={handleSendMessage} className="flex relative">
                       <input 
                         type="text" 
                         value={inputText}
                         onChange={(e) => setInputText(e.target.value)}
                         placeholder="Text Message"
-                        className="w-full bg-gray-900/80 text-gray-100 rounded-full pl-4 pr-10 py-2.5 text-xs outline-none border border-gray-600 focus:border-cyan-500 transition-colors placeholder-gray-500 shadow-inner"
+                        className="w-full bg-zinc-900 text-zinc-100 rounded-full pl-4 pr-10 py-2.5 text-xs outline-none border border-zinc-600 focus:border-blue-500 transition-colors placeholder-zinc-500"
                       />
                       <button 
                         type="submit" 
                         disabled={!inputText.trim()}
-                        className={`absolute right-1.5 top-1.5 w-7 h-7 rounded-full flex items-center justify-center transition-colors cursor-pointer ${inputText.trim() ? 'bg-cyan-500 text-gray-900 shadow-md hover:bg-cyan-400' : 'bg-gray-700 text-gray-500'}`}
+                        className={`absolute right-1.5 top-1.5 w-7 h-7 rounded-full flex items-center justify-center transition-colors cursor-pointer ${inputText.trim() ? 'bg-blue-600 text-white shadow-md hover:bg-blue-500' : 'bg-zinc-700 text-zinc-500'}`}
                       >
                         <span className="text-[10px] font-bold leading-none transform -translate-y-[1px]">↑</span>
                       </button>
@@ -240,11 +244,11 @@ function Banner() {
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.3 }}
-                  className="w-full h-full flex flex-col overflow-hidden bg-gray-900 relative"
+                  className="w-full h-full flex flex-col overflow-hidden bg-zinc-900 relative"
                 >
                   {/* Home Screen Wallpaper (Blurred Profile Image) */}
                   <img src={profileImage} className="absolute inset-0 w-full h-full object-cover opacity-50 blur-[3px] scale-105" alt="Home Screen Wallpaper" />
-                  <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/60 to-black/90"></div>
+                  <div className="absolute inset-0 bg-black/60"></div>
 
                   {/* App Grid */}
                   <div className="relative z-20 flex-1 w-full pt-12 px-5 pb-24 flex flex-col">
@@ -252,11 +256,11 @@ function Banner() {
                       {techStack.map((skill, i) => (
                         <div key={i} className="flex flex-col items-center justify-start group">
                           {/* App Icon */}
-                          <div className={`w-[60px] h-[60px] rounded-2xl ${skill.bg} border border-white/10 flex flex-col items-center justify-center shadow-[0_8px_16px_rgba(0,0,0,0.3)] group-hover:scale-105 transition-transform cursor-pointer bg-opacity-70 backdrop-blur-md`}>
-                            <div className={`text-3xl ${skill.color} drop-shadow-lg`}>{skill.icon}</div>
+                          <div className={`w-[60px] h-[60px] rounded-2xl ${skill.bg} border border-white/10 flex flex-col items-center justify-center shadow-md group-hover:scale-105 transition-transform cursor-pointer`}>
+                            {skill.icon}
                           </div>
                           {/* App Label */}
-                          <span className="text-[11px] font-semibold text-gray-100 mt-2 text-center leading-tight drop-shadow-md truncate w-full px-1">{skill.name}</span>
+                          <span className="text-[11px] font-semibold text-zinc-100 mt-2 text-center leading-tight truncate w-full px-1">{skill.name}</span>
                         </div>
                       ))}
                     </div>
@@ -264,7 +268,7 @@ function Banner() {
 
                   {/* Phone Bottom Dock */}
                   <div 
-                    className="absolute bottom-3 left-1/2 -translate-x-1/2 w-[85%] h-[60px] bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl flex items-center justify-around px-2 shadow-2xl z-30"
+                    className="absolute bottom-3 left-1/2 -translate-x-1/2 w-[85%] h-[60px] bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl flex items-center justify-around px-2 shadow-lg z-30"
                     onClick={(e) => e.stopPropagation()} 
                   >
                     
@@ -274,7 +278,7 @@ function Banner() {
                       title="Open Messages"
                       className="group flex flex-col items-center justify-center p-1"
                     >
-                      <div className="w-11 h-11 bg-gradient-to-br from-green-400 to-emerald-600 rounded-[10px] flex items-center justify-center text-white shadow-md hover:shadow-green-500/50 group-hover:scale-[1.15] group-hover:-translate-y-2 transition-all duration-300">
+                      <div className="w-11 h-11 bg-emerald-600 rounded-[10px] flex items-center justify-center text-white shadow-md hover:bg-emerald-500 group-hover:scale-[1.15] group-hover:-translate-y-2 transition-all duration-300">
                         <FontAwesomeIcon icon={faCommentDots} size="lg" />
                       </div>
                     </button>
@@ -287,7 +291,7 @@ function Banner() {
                       title="Connect on LinkedIn"
                       className="group flex flex-col items-center justify-center p-1"
                     >
-                      <div className="w-11 h-11 bg-gradient-to-br from-blue-500 to-blue-700 rounded-[10px] flex items-center justify-center text-white shadow-md hover:shadow-blue-500/50 group-hover:scale-[1.15] group-hover:-translate-y-2 transition-all duration-300">
+                      <div className="w-11 h-11 bg-blue-600 rounded-[10px] flex items-center justify-center text-white shadow-md hover:bg-blue-500 group-hover:scale-[1.15] group-hover:-translate-y-2 transition-all duration-300">
                         <FontAwesomeIcon icon={faLinkedin} size="lg" />
                       </div>
                     </a>
@@ -300,7 +304,7 @@ function Banner() {
                       title="GitHub Profile"
                       className="group flex flex-col items-center justify-center p-1"
                     >
-                      <div className="w-11 h-11 bg-gradient-to-br from-gray-700 to-gray-900 rounded-[10px] flex items-center justify-center text-white shadow-md border border-gray-600 hover:shadow-gray-500/50 group-hover:scale-[1.15] group-hover:-translate-y-2 transition-all duration-300">
+                      <div className="w-11 h-11 bg-zinc-800 rounded-[10px] flex items-center justify-center text-white shadow-md border border-zinc-700 hover:bg-zinc-700 group-hover:scale-[1.15] group-hover:-translate-y-2 transition-all duration-300">
                         <FontAwesomeIcon icon={faGithub} size="lg" />
                       </div>
                     </a>
@@ -312,6 +316,26 @@ function Banner() {
             </motion.div>
           </div>
 
+        </div>
+
+        {/* Key Metrics / Highlights Strip */}
+        <div className="mt-16 pt-8 border-t border-zinc-900 grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 text-center">
+          <div className="p-4 bg-zinc-900/40 border border-zinc-900/80 rounded-xl">
+            <div className="text-2xl md:text-3xl font-bold text-white tracking-tight">1+ Years</div>
+            <div className="text-xs text-zinc-400 mt-1 font-medium">Production Experience</div>
+          </div>
+          <div className="p-4 bg-zinc-900/40 border border-zinc-900/80 rounded-xl">
+            <div className="text-2xl md:text-3xl font-bold text-white tracking-tight">10+</div>
+            <div className="text-xs text-zinc-400 mt-1 font-medium"> Applications & Platforms</div>
+          </div>
+          <div className="p-4 bg-zinc-900/40 border border-zinc-900/80 rounded-xl">
+            <div className="text-2xl md:text-3xl font-bold text-white tracking-tight">Fintech</div>
+            <div className="text-xs text-zinc-400 mt-1 font-medium">Dashen, EthioPost & Choice</div>
+          </div>
+          <div className="p-4 bg-zinc-900/40 border border-zinc-900/80 rounded-xl">
+            <div className="text-2xl md:text-3xl font-bold text-white tracking-tight">Certified</div>
+            <div className="text-xs text-zinc-400 mt-1 font-medium">Jimma Univ. & Hackathons</div>
+          </div>
         </div>
       </div>
     </div>
