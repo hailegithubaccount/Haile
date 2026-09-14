@@ -1,8 +1,10 @@
+import { FaEnvelope, FaTelegramPlane, FaInstagram, FaPhoneAlt, FaPaperPlane } from "react-icons/fa";
+
 const contactInfo = [
-  { icon: "📧", label: "Email", value: "eshetuhailemichael06@gmail.com" },
-  { icon: "💬", label: "Telegram", value: "@Haile6" },
-  { icon: "📸", label: "Instagram", value: "@haile_adey" },
-  { icon: "📱", label: "Phone", value: "+251 927 83 18 56" },
+  { icon: <FaEnvelope className="text-zinc-200 text-base" />, label: "Email", value: "eshetuhailemichael06@gmail.com", href: "mailto:eshetuhailemichael06@gmail.com" },
+  { icon: <FaTelegramPlane className="text-zinc-200 text-base" />, label: "Telegram", value: "@Haile6", href: "https://t.me/Haile6" },
+  { icon: <FaInstagram className="text-zinc-200 text-base" />, label: "Instagram", value: "@haile_adey", href: "https://www.instagram.com/haile_adey" },
+  { icon: <FaPhoneAlt className="text-zinc-200 text-sm" />, label: "Phone", value: "+251 927 831 856", href: "tel:+251927831856" },
 ];
 
 function Contact({ onRobotInspect }) {
@@ -28,31 +30,34 @@ function Contact({ onRobotInspect }) {
 
           <div className="space-y-3 pt-2">
             {contactInfo.map((item, i) => (
-              <div 
+              <a 
                 key={i} 
+                href={item.href}
+                target={item.href.startsWith("http") ? "_blank" : "_self"}
+                rel="noopener noreferrer"
                 onMouseEnter={() => handleMouseEnter(item.label, item.value)}
                 onMouseLeave={handleMouseLeave}
-                className="flex items-center gap-4 p-3.5 rounded-lg bg-zinc-900/90 border border-zinc-800 hover:border-zinc-700 transition-colors shadow-sm cursor-pointer group"
+                className="flex items-center gap-4 p-3.5 rounded-lg bg-zinc-900/90 border border-zinc-800 hover:border-zinc-700 transition-colors shadow-sm cursor-pointer group block"
               >
-                <div className="w-10 h-10 flex items-center justify-center bg-zinc-800 rounded-lg text-lg text-zinc-200 border border-zinc-700/50 group-hover:scale-105 transition-transform">
+                <div className="w-10 h-10 flex items-center justify-center bg-zinc-800 rounded-lg text-zinc-200 border border-zinc-700/50 group-hover:scale-105 group-hover:bg-zinc-700/80 transition-all">
                   {item.icon}
                 </div>
                 <div>
                   <p className="text-xs text-zinc-500 tracking-tight">{item.label}</p>
                   <p className="text-sm font-medium text-zinc-200 tracking-tight group-hover:text-white transition-colors">{item.value}</p>
                 </div>
-              </div>
+              </a>
             ))}
           </div>
 
           <div className="flex gap-3 pt-2">
             <a href="https://t.me/Haile6" target="_blank" rel="noopener noreferrer"
-              className="px-4 py-2 rounded-lg border border-zinc-800 bg-zinc-900 text-zinc-300 text-xs font-medium hover:text-white hover:bg-zinc-800 transition-colors shadow-sm">
-              Telegram
+              className="px-4 py-2 rounded-lg border border-zinc-800 bg-zinc-900 text-zinc-300 text-xs font-medium hover:text-white hover:bg-zinc-800 transition-colors shadow-sm flex items-center gap-2">
+              <FaTelegramPlane className="text-xs" /> Telegram
             </a>
             <a href="https://www.instagram.com/haile_adey" target="_blank" rel="noopener noreferrer"
-              className="px-4 py-2 rounded-lg border border-zinc-800 bg-zinc-900 text-zinc-300 text-xs font-medium hover:text-white hover:bg-zinc-800 transition-colors shadow-sm">
-              Instagram
+              className="px-4 py-2 rounded-lg border border-zinc-800 bg-zinc-900 text-zinc-300 text-xs font-medium hover:text-white hover:bg-zinc-800 transition-colors shadow-sm flex items-center gap-2">
+              <FaInstagram className="text-xs" /> Instagram
             </a>
           </div>
         </div>
@@ -77,9 +82,9 @@ function Contact({ onRobotInspect }) {
 
             <button
               type="submit"
-              className="w-full py-3.5 px-6 bg-white text-zinc-950 font-semibold rounded-lg text-sm flex items-center justify-center gap-2 hover:bg-zinc-200 transition-colors shadow-sm tracking-tight"
+              className="w-full py-3.5 px-6 bg-white text-zinc-950 font-semibold rounded-lg text-sm flex items-center justify-center gap-2 hover:bg-zinc-200 transition-colors shadow-sm tracking-tight cursor-pointer"
             >
-              Send Message
+              <FaPaperPlane className="text-xs" /> Send Message
             </button>
           </form>
         </div>

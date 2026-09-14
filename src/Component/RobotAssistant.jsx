@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCommentDots } from "@fortawesome/free-solid-svg-icons";
+import { faCommentDots, faVolumeHigh, faVolumeXmark } from "@fortawesome/free-solid-svg-icons";
 import robotBot from "../assets/robotBot.png";
 
-// Canvas Component to remove white background from robot image dynamically
+// Canvas Component to remove outer white square background while keeping robot body solid white
 function TransparentRobot({ src, className }) {
   const [transparentSrc, setTransparentSrc] = useState(src);
 
@@ -21,14 +21,58 @@ function TransparentRobot({ src, className }) {
 
       const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
       const data = imageData.data;
+      const width = canvas.width;
+      const height = canvas.height;
 
-      // Make all white / near-white pixels completely transparent
-      for (let i = 0; i < data.length; i += 4) {
-        const r = data[i];
-        const g = data[i + 1];
-        const b = data[i + 2];
-        if (r > 220 && g > 220 && b > 220) {
-          data[i + 3] = 0; // Alpha = 0 (100% transparent)
+      // Smart Flood Fill: only remove outer white background pixels (RGB > 242)
+      // Stops completely at the dark outline of the robot body
+      const visited = new Uint8Array(width * height);
+      const queue = [];
+
+      const isOuterBackgroundWhite = (x, y) => {
+        const idx = (y * width + x) * 4;
+        const r = data[idx];
+        const g = data[idx + 1];
+        const b = data[idx + 2];
+        return r > 242 && g > 242 && b > 242;
+      };
+
+      // Push all 4 outer border pixels into queue
+      for (let x = 0; x < width; x++) {
+        if (isOuterBackgroundWhite(x, 0)) queue.push(x, 0);
+        if (isOuterBackgroundWhite(x, height - 1)) queue.push(x, height - 1);
+      }
+      for (let y = 0; y < height; y++) {
+        if (isOuterBackgroundWhite(0, y)) queue.push(0, y);
+        if (isOuterBackgroundWhite(width - 1, y)) queue.push(width - 1, y);
+      }
+
+      // BFS flood fill starting strictly from outer edges
+      let head = 0;
+      while (head < queue.length) {
+        const x = queue[head++];
+        const y = queue[head++];
+        const pos = y * width + x;
+
+        if (visited[pos]) continue;
+        visited[pos] = 1;
+
+        // Make outer white background pixel 100% transparent
+        data[pos * 4 + 3] = 0;
+
+        // 4-connected neighbors
+        const neighbors = [
+          [x + 1, y], [x - 1, y], [x, y + 1], [x, y - 1]
+        ];
+
+        for (let j = 0; j < neighbors.length; j++) {
+          const [nx, ny] = neighbors[j];
+          if (nx >= 0 && nx < width && ny >= 0 && ny < height) {
+            const npos = ny * width + nx;
+            if (!visited[npos] && isOuterBackgroundWhite(nx, ny)) {
+              queue.push(nx, ny);
+            }
+          }
         }
       }
 
@@ -49,6 +93,39 @@ function TransparentRobot({ src, className }) {
 function RobotAssistant({ customMessage, activeHeader }) {
   const [activeSection, setActiveSection] = useState("home");
   const [typedMessage, setTypedMessage] = useState("");
+  const [isSpeechEnabled, setIsSpeechEnabled] = useState(false);
+  const [currentFullText, setCurrentFullText] = useState("");
+
+  // Speech Synthesis Helper
+  const speakText = (text) => {
+    if (!('speechSynthesis' in window)) return;
+
+    window.speechSynthesis.cancel();
+    if (!text) return;
+
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.rate = 1.0;
+    utterance.pitch = 1.1;
+    utterance.volume = 1.0;
+
+    const voices = window.speechSynthesis.getVoices();
+    const preferredVoice = voices.find(v => v.lang.includes("en") && (v.name.includes("Google") || v.name.includes("Natural") || v.name.includes("Samantha") || v.name.includes("David")));
+    if (preferredVoice) {
+      utterance.voice = preferredVoice;
+    }
+
+    window.speechSynthesis.speak(utterance);
+  };
+
+  const toggleSpeech = () => {
+    if (isSpeechEnabled) {
+      window.speechSynthesis.cancel();
+      setIsSpeechEnabled(false);
+    } else {
+      setIsSpeechEnabled(true);
+      speakText(currentFullText);
+    }
+  };
 
   // Track active section as user scrolls through the portfolio
   useEffect(() => {
@@ -76,13 +153,13 @@ function RobotAssistant({ customMessage, activeHeader }) {
   // Section default resting messages
   const sectionMessages = {
     home: "Welcome to Haile's Portfolio! Scroll down to explore his mobile apps, web platforms, and software engineering skills.",
-    about: "Haile is a Full-Stack & Mobile Software Engineer specializing in React Native,React, Node.js, and scalable web platforms.",
+    about: "Haile is a Full-Stack & Mobile Software Engineer specializing in React Native, React, Node.js, and scalable web platforms.",
     skills: "Hover over any skill card on the left to see how Haile applies that technology in production projects!",
     projects: "Hover over any project card to inspect its deep architecture, features, and tech specifications.",
     contact: "Want to collaborate or hire Haile? Feel free to send a message directly or connect via LinkedIn & GitHub!"
   };
 
-  // Determine what full text to type out
+  // Determine what full text to type out and speak
   useEffect(() => {
     let fullText = "";
 
@@ -92,6 +169,7 @@ function RobotAssistant({ customMessage, activeHeader }) {
       fullText = sectionMessages[activeSection] || sectionMessages.home;
     }
 
+    setCurrentFullText(fullText);
     setTypedMessage("");
     let index = 0;
     const interval = setInterval(() => {
@@ -103,8 +181,12 @@ function RobotAssistant({ customMessage, activeHeader }) {
       }
     }, 12);
 
+    if (isSpeechEnabled) {
+      speakText(fullText);
+    }
+
     return () => clearInterval(interval);
-  }, [customMessage, activeSection]);
+  }, [customMessage, activeSection, isSpeechEnabled]);
 
   const headerTitle = activeHeader || (
     activeSection === "home" ? "Welcome" :
@@ -135,9 +217,26 @@ function RobotAssistant({ customMessage, activeHeader }) {
               {headerTitle}
             </span>
           </div>
-          <span className="text-[9px] font-mono bg-zinc-800 text-zinc-300 border border-zinc-700 px-1.5 py-0.5 rounded uppercase">
-            {activeSection}
-          </span>
+
+          <div className="flex items-center gap-2">
+            {/* Audio Toggle Button */}
+            <button
+              onClick={toggleSpeech}
+              title={isSpeechEnabled ? "Mute Voice Narration" : "Enable Voice Narration"}
+              className={`p-1 px-2 rounded text-xs transition-colors flex items-center gap-1 cursor-pointer border ${
+                isSpeechEnabled 
+                  ? "bg-white text-zinc-950 border-white font-medium" 
+                  : "bg-zinc-800 text-zinc-400 border-zinc-700 hover:text-white"
+              }`}
+            >
+              <FontAwesomeIcon icon={isSpeechEnabled ? faVolumeHigh : faVolumeXmark} />
+              <span className="text-[10px] font-mono uppercase">{isSpeechEnabled ? "Voice ON" : "Voice OFF"}</span>
+            </button>
+
+            <span className="text-[9px] font-mono bg-zinc-800 text-zinc-300 border border-zinc-700 px-1.5 py-0.5 rounded uppercase">
+              {activeSection}
+            </span>
+          </div>
         </div>
 
         {/* Dynamic Typed Message Content */}
@@ -151,6 +250,8 @@ function RobotAssistant({ customMessage, activeHeader }) {
       <motion.div
         animate={{ y: [0, -8, 0] }}
         transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
+        onClick={toggleSpeech}
+        title="Click robot to toggle voice audio!"
         className="pointer-events-auto cursor-pointer"
       >
         <TransparentRobot
