@@ -93,7 +93,7 @@ function About({ onRobotInspect }) {
                   </div>
                   <div className="text-xs font-semibold text-zinc-300 mb-2">Orbit Technology Solution PLC</div>
                   <p className="text-zinc-400 text-sm leading-relaxed">
-                    Engineering scalable web and mobile software systems. Designing full-stack system architecture, implementing reactive frontend UIs, integrating secure RESTful APIs, and managing database layers.
+                    Architecting & engineering scalable enterprise systems including <strong className="text-zinc-200 font-medium">HIMS</strong> (Hospital Info Management System), <strong className="text-zinc-200 font-medium">Adoye</strong>, <strong className="text-zinc-200 font-medium">Youth for Health</strong>, <strong className="text-zinc-200 font-medium">Finot</strong>, and <strong className="text-zinc-200 font-medium">SMS</strong> platform. Designing full-stack system architecture, APIs, and mobile applications.
                   </p>
                 </div>
               </div>

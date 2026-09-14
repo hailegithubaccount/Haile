@@ -59,16 +59,16 @@ function Banner({ onRobotInspect }) {
       response: "Hello! Welcome to Haile's portfolio! Ask me about mobile apps, web platforms, technical skills, or how to contact Haile!"
     },
     {
-      keywords: ["mobile", "react native", "flutter", "expo", "ios", "android"],
-      response: "Haile builds production cross-platform mobile apps for iOS & Android using React Native and Flutter. Notable apps include Dashen Super App, HIMS Clinical App, and EthioPost Agent App!"
+      keywords: ["mobile", "react native", "flutter", "expo", "ios", "android", "hims", "adoye", "finot", "sms"],
+      response: "Haile builds production apps & platforms including HIMS (Hospital Info System), Adoye, Youth for Health, Finot, SMS platform, Dashen Super App, and EthioPost Agent App!"
     },
     {
       keywords: ["skill", "tech", "stack", "react", "node", "typescript", "nest"],
       response: "Haile's core stack includes React Native, Flutter, React, TypeScript, Node.js, NestJS, Express, REST APIs, MySQL, MongoDB, and Firebase!"
     },
     {
-      keywords: ["project", "work", "app", "portfolio", "dashen", "hims"],
-      response: "Haile has engineered 10+ production applications & platforms! Scroll down to the Featured Projects section to inspect deep tech specifications and source code!"
+      keywords: ["project", "work", "app", "portfolio", "dashen", "hims", "adoye", "finot", "youth"],
+      response: "Haile has engineered 10+ production applications & platforms including HIMS, Adoye, Youth for Health, Finot, SMS, and Dashen Super App! Scroll down to Featured Projects to inspect source code!"
     },
     {
       keywords: ["contact", "phone", "number", "call", "reach", "telegram", "email"],
