@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMicrochip, faRobot, faXmark, faChevronRight, faCode, faServer, faLayerGroup, faCommentDots } from "@fortawesome/free-solid-svg-icons";
+import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
 
 import project1 from "../assets/azmeraTrade.jpg";
 import project2 from "../assets/Netflix.png";
@@ -24,48 +25,6 @@ import projectDashenSuperApp from "../assets/Dashen.png";
 import projectBirateSchool from "../assets/birateSchool.png";
 import projectHIMSApp from "../assets/himsApp.png";
 import robotBot from "../assets/robotBot.png";
-
-// Canvas Component to remove white background from robot image dynamically
-function TransparentRobot({ src, className }) {
-  const [transparentSrc, setTransparentSrc] = useState(src);
-
-  useEffect(() => {
-    const img = new Image();
-    img.crossOrigin = "Anonymous";
-    img.src = src;
-    img.onload = () => {
-      const canvas = document.createElement("canvas");
-      canvas.width = img.width;
-      canvas.height = img.height;
-      const ctx = canvas.getContext("2d");
-      ctx.drawImage(img, 0, 0);
-
-      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-      const data = imageData.data;
-
-      // Make all white / near-white pixels completely transparent
-      for (let i = 0; i < data.length; i += 4) {
-        const r = data[i];
-        const g = data[i + 1];
-        const b = data[i + 2];
-        if (r > 220 && g > 220 && b > 220) {
-          data[i + 3] = 0; // Alpha = 0 (100% transparent)
-        }
-      }
-
-      ctx.putImageData(imageData, 0, 0);
-      setTransparentSrc(canvas.toDataURL("image/png"));
-    };
-  }, [src]);
-
-  return (
-    <img
-      src={transparentSrc}
-      alt="Robot Assistant"
-      className={className}
-    />
-  );
-}
 
 const projects = [
   {
@@ -280,7 +239,6 @@ const projects = [
 function Projects({ onRobotInspect }) {
   const [filter, setFilter] = useState("all");
   const [hoveredProject, setHoveredProject] = useState(null);
-  const [selectedModalProject, setSelectedModalProject] = useState(null);
 
   const appProjects = projects.filter((p) => p.type === "app");
   const webProjects = projects.filter((p) => p.type === "web");
@@ -351,8 +309,7 @@ function Projects({ onRobotInspect }) {
                   transition={{ duration: 0.3 }}
                   onMouseEnter={() => setHoveredProject(project)}
                   onMouseLeave={() => setHoveredProject(null)}
-                  onClick={() => setSelectedModalProject(project)}
-                  className="bg-zinc-900/90 border border-zinc-800 rounded-2xl overflow-hidden hover:border-zinc-700 transition-colors shadow-sm flex flex-row group cursor-pointer"
+                  className="bg-zinc-900/90 border border-zinc-800 rounded-2xl overflow-hidden hover:border-zinc-700 transition-colors shadow-sm flex flex-row group"
                 >
                   {/* Left: Phone Mockup Frame */}
                   <div className="w-[105px] min-[400px]:w-[125px] sm:w-[165px] md:w-[190px] shrink-0 bg-zinc-950 flex items-center justify-center p-2.5 sm:p-4 border-r border-zinc-800/80">
@@ -398,9 +355,30 @@ function Projects({ onRobotInspect }) {
                           </span>
                         ))}
                       </div>
-                      <span className="text-[11px] font-medium text-white group-hover:translate-x-1 transition-transform flex items-center gap-1">
-                        View Specs <FontAwesomeIcon icon={faChevronRight} className="text-[10px]" />
-                      </span>
+                      {(project.github || project.live) && (
+                        <div className="flex items-center gap-2">
+                          {project.github && (
+                            <a
+                              href={project.github}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="px-2 py-1 bg-zinc-800 hover:bg-zinc-700 text-zinc-300 hover:text-white text-[10px] sm:text-[11px] font-medium rounded-md border border-zinc-700/60 transition-colors flex items-center gap-1"
+                            >
+                              <FontAwesomeIcon icon={faGithub} className="text-[10px]" /> Code
+                            </a>
+                          )}
+                          {project.live && (
+                            <a
+                              href={project.live}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="px-2 py-1 bg-white hover:bg-zinc-200 text-zinc-950 text-[10px] sm:text-[11px] font-semibold rounded-md transition-colors flex items-center gap-1"
+                            >
+                              Live <FontAwesomeIcon icon={faArrowUpRightFromSquare} className="text-[9px]" />
+                            </a>
+                          )}
+                        </div>
+                      )}
                     </div>
                   </div>
                 </motion.div>
@@ -431,8 +409,7 @@ function Projects({ onRobotInspect }) {
                   transition={{ duration: 0.3 }}
                   onMouseEnter={() => setHoveredProject(project)}
                   onMouseLeave={() => setHoveredProject(null)}
-                  onClick={() => setSelectedModalProject(project)}
-                  className="bg-zinc-900/90 border border-zinc-800 rounded-2xl overflow-hidden hover:border-zinc-700 transition-colors shadow-sm flex flex-col group cursor-pointer"
+                  className="bg-zinc-900/90 border border-zinc-800 rounded-2xl overflow-hidden hover:border-zinc-700 transition-colors shadow-sm flex flex-col group"
                 >
                   {/* Top: Minimalist Browser Window Frame */}
                   <div className="bg-zinc-950 p-3 sm:p-4 border-b border-zinc-800/80">
@@ -488,9 +465,30 @@ function Projects({ onRobotInspect }) {
                           </span>
                         ))}
                       </div>
-                      <span className="text-[11px] font-medium text-white group-hover:translate-x-1 transition-transform flex items-center gap-1">
-                        View Specs <FontAwesomeIcon icon={faChevronRight} className="text-[10px]" />
-                      </span>
+                      {(project.github || project.live) && (
+                        <div className="flex items-center gap-2">
+                          {project.github && (
+                            <a
+                              href={project.github}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="px-2 py-1 bg-zinc-800 hover:bg-zinc-700 text-zinc-300 hover:text-white text-[11px] font-medium rounded-md border border-zinc-700/60 transition-colors flex items-center gap-1"
+                            >
+                              <FontAwesomeIcon icon={faGithub} className="text-[10px]" /> Code
+                            </a>
+                          )}
+                          {project.live && (
+                            <a
+                              href={project.live}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="px-2 py-1 bg-white hover:bg-zinc-200 text-zinc-950 text-[11px] font-semibold rounded-md transition-colors flex items-center gap-1"
+                            >
+                              Live <FontAwesomeIcon icon={faArrowUpRightFromSquare} className="text-[9px]" />
+                            </a>
+                          )}
+                        </div>
+                      )}
                     </div>
                   </div>
                 </motion.div>
@@ -499,144 +497,6 @@ function Projects({ onRobotInspect }) {
           </div>
         )}
       </div>
-
-
-
-      {/* ============================================================ */}
-      {/* MONOCHROME DEEP INSPECTION MODAL                             */}
-      {/* ============================================================ */}
-      <AnimatePresence>
-        {selectedModalProject && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setSelectedModalProject(null)}
-            className="fixed inset-0 z-50 bg-zinc-950/80 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 overflow-y-auto"
-          >
-            <motion.div
-              initial={{ scale: 0.95, y: 15, opacity: 0 }}
-              animate={{ scale: 1, y: 0, opacity: 1 }}
-              exit={{ scale: 0.95, y: 15, opacity: 0 }}
-              transition={{ duration: 0.2 }}
-              onClick={(e) => e.stopPropagation()}
-              className="bg-zinc-900 border border-zinc-800 rounded-2xl max-w-3xl w-full p-6 sm:p-8 shadow-2xl relative text-white"
-            >
-              {/* Close Button */}
-              <button
-                onClick={() => setSelectedModalProject(null)}
-                className="absolute top-5 right-5 w-9 h-9 rounded-full bg-zinc-800 border border-zinc-700 flex items-center justify-center text-zinc-400 hover:text-white transition-colors z-20"
-              >
-                <FontAwesomeIcon icon={faXmark} size="lg" />
-              </button>
-
-              {/* Modal Header */}
-              <div className="flex items-start gap-4 mb-6">
-                <div className="w-14 h-14 shrink-0 flex items-center justify-center">
-                  <TransparentRobot src={robotBot} className="w-full h-full object-contain drop-shadow-md" />
-                </div>
-                <div>
-                  <div className="flex items-center gap-2 mb-1">
-                    <span className="text-[10px] font-mono tracking-widest text-zinc-400 uppercase font-bold px-2 py-0.5 bg-zinc-800 rounded">
-                      System Overview
-                    </span>
-                    {selectedModalProject.badge && (
-                      <span className="text-[10px] font-mono text-zinc-400 uppercase border border-zinc-800 px-2 py-0.5 rounded">
-                        {selectedModalProject.badge}
-                      </span>
-                    )}
-                  </div>
-                  <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
-                    {selectedModalProject.title}
-                  </h3>
-                </div>
-              </div>
-
-              {/* Deep Architecture Description */}
-              <div className="bg-zinc-950 border border-zinc-800 p-4 sm:p-5 rounded-xl mb-6">
-                <h4 className="text-xs font-semibold text-white uppercase tracking-wider mb-2 flex items-center gap-2">
-                  <FontAwesomeIcon icon={faCode} /> System Overview & Architecture
-                </h4>
-                <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed">
-                  {selectedModalProject.deepDescription}
-                </p>
-              </div>
-
-              {/* Core Features */}
-              {selectedModalProject.features && (
-                <div className="mb-6">
-                  <h4 className="text-xs font-semibold text-white uppercase tracking-wider mb-3 flex items-center gap-2">
-                    <FontAwesomeIcon icon={faLayerGroup} /> Core Modules
-                  </h4>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                    {selectedModalProject.features.map((feat, idx) => (
-                      <div key={idx} className="bg-zinc-950 border border-zinc-800 p-3 rounded-xl flex items-center gap-3">
-                        <span className="w-1.5 h-1.5 rounded-full bg-white shrink-0"></span>
-                        <span className="text-xs text-zinc-300 font-medium">{feat}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {/* Tech Stack */}
-              {selectedModalProject.architecture && (
-                <div className="mb-6 bg-zinc-950 border border-zinc-800 p-4 rounded-xl text-xs">
-                  <h4 className="text-[11px] text-white uppercase tracking-wider mb-3 font-semibold flex items-center gap-2">
-                    <FontAwesomeIcon icon={faServer} /> Technical Specifications
-                  </h4>
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-[11px]">
-                    <div>
-                      <span className="text-zinc-500 block">Frontend:</span>
-                      <span className="text-zinc-200 font-medium">{selectedModalProject.architecture.frontend}</span>
-                    </div>
-                    <div>
-                      <span className="text-zinc-500 block">State/Storage:</span>
-                      <span className="text-zinc-200 font-medium">{selectedModalProject.architecture.state}</span>
-                    </div>
-                    <div>
-                      <span className="text-zinc-500 block">Backend:</span>
-                      <span className="text-zinc-200 font-medium">{selectedModalProject.architecture.backend}</span>
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {/* Action Buttons */}
-              <div className="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-zinc-800">
-                <div className="flex items-center gap-2">
-                  {selectedModalProject.github && (
-                    <a
-                      href={selectedModalProject.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="px-4 py-2 bg-zinc-800 hover:bg-zinc-700 text-white text-xs rounded-xl border border-zinc-700 transition-colors flex items-center gap-2"
-                    >
-                      <FontAwesomeIcon icon={faCode} /> Source Code
-                    </a>
-                  )}
-                  {selectedModalProject.live && (
-                    <a
-                      href={selectedModalProject.live}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="px-4 py-2 bg-white text-zinc-950 font-bold text-xs rounded-xl hover:bg-zinc-200 transition-colors flex items-center gap-2"
-                    >
-                      Live Demo 🚀
-                    </a>
-                  )}
-                </div>
-                <button
-                  onClick={() => setSelectedModalProject(null)}
-                  className="px-4 py-2 bg-zinc-950 border border-zinc-800 text-zinc-400 hover:text-white text-xs rounded-xl transition-colors"
-                >
-                  Close
-                </button>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </section>
   );
 }
