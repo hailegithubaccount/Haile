@@ -24,7 +24,6 @@ import project17 from "../assets/cloth.png";
 import projectDashenSuperApp from "../assets/Dashen.png";
 import projectBirateSchool from "../assets/birateSchool.png";
 import projectHIMSApp from "../assets/himsApp.png";
-import robotBot from "../assets/robotBot.png";
 
 const projects = [
   {
