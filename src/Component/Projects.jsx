@@ -259,9 +259,7 @@ function Projects({ onRobotInspect }) {
           <div>
             <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight flex items-center gap-3">
               Featured Projects
-              <span className="text-xs font-mono px-2.5 py-1 bg-zinc-900 text-zinc-300 border border-zinc-800 rounded-full font-medium">
-                {projects.length} Projects
-              </span>
+             
             </h2>
             <p className="text-base text-zinc-400 mt-2 max-w-2xl tracking-tight">
               Production mobile applications and full-stack web platforms engineered from end to end.

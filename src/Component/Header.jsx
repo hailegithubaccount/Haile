@@ -24,6 +24,7 @@ function Header() {
         <div className="hidden sm:flex items-center gap-1.5 px-2.5 py-1 bg-zinc-900 border border-zinc-800 rounded-full text-[11px] text-zinc-300 font-medium">
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
           Available for roles
+          
         </div>
       </div>
 
