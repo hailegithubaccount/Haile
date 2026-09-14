@@ -85,7 +85,7 @@ function About({ onRobotInspect }) {
               
               {/* Timeline Item 1 */}
               <div className="relative flex items-start gap-4 pl-8">
-                <span className="absolute left-2 top-1.5 w-3 h-3 rounded-full bg-emerald-500 ring-4 ring-zinc-950"></span>
+                <span className="absolute left-2 top-1.5 w-3 h-3 rounded-full bg-zinc-300 ring-4 ring-zinc-950"></span>
                 <div className="flex-1">
                   <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-1">
                     <h3 className="text-base font-bold text-white tracking-tight">Full Stack Developer</h3>
@@ -100,7 +100,7 @@ function About({ onRobotInspect }) {
 
               {/* Timeline Item 2 */}
               <div className="relative flex items-start gap-4 pl-8">
-                <span className="absolute left-2 top-1.5 w-3 h-3 rounded-full bg-blue-500 ring-4 ring-zinc-950"></span>
+                <span className="absolute left-2 top-1.5 w-3 h-3 rounded-full bg-zinc-500 ring-4 ring-zinc-950"></span>
                 <div className="flex-1">
                   <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-1">
                     <h3 className="text-base font-bold text-white tracking-tight">Mobile & Full Stack Developer</h3>
@@ -115,7 +115,7 @@ function About({ onRobotInspect }) {
 
               {/* Timeline Item 3 */}
               <div className="relative flex items-start gap-4 pl-8">
-                <span className="absolute left-2 top-1.5 w-3 h-3 rounded-full bg-purple-500 ring-4 ring-zinc-950"></span>
+                <span className="absolute left-2 top-1.5 w-3 h-3 rounded-full bg-zinc-600 ring-4 ring-zinc-950"></span>
                 <div className="flex-1">
                   <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-1">
                     <h3 className="text-base font-bold text-white tracking-tight">B.Sc. in Computer Science</h3>
