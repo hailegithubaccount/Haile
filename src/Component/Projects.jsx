@@ -236,7 +236,7 @@ const projects = [
 ];
 
 function Projects({ onRobotInspect }) {
-  const [filter, setFilter] = useState("all");
+  const [filter, setFilter] = useState("app");
   const [hoveredProject, setHoveredProject] = useState(null);
 
   const appProjects = projects.filter((p) => p.type === "app");
@@ -259,7 +259,6 @@ function Projects({ onRobotInspect }) {
           <div>
             <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight flex items-center gap-3">
               Featured Projects
-             
             </h2>
             <p className="text-base text-zinc-400 mt-2 max-w-2xl tracking-tight">
               Production mobile applications and full-stack web platforms engineered from end to end.
@@ -268,17 +267,17 @@ function Projects({ onRobotInspect }) {
 
           {/* Filter Tabs */}
           <div className="flex gap-2 flex-wrap">
-            {["all", "app", "web"].map((f) => (
+            {["app", "web"].map((f) => (
               <button
                 key={f}
                 onClick={() => setFilter(f)}
-                className={`px-4 py-2 rounded-lg text-xs font-medium transition-colors tracking-tight ${
+                className={`px-4 py-2 rounded-lg text-xs font-medium transition-colors tracking-tight cursor-pointer ${
                   filter === f
                     ? "bg-white text-zinc-950 font-semibold shadow-sm"
                     : "bg-zinc-900 text-zinc-400 border border-zinc-800 hover:text-white hover:bg-zinc-800"
                 }`}
               >
-                {f === "all" ? "All Projects" : f === "app" ? "Mobile Apps" : "Web Platforms"}
+                {f === "app" ? "Mobile Apps" : "Web Platforms"}
               </button>
             ))}
           </div>
@@ -289,14 +288,12 @@ function Projects({ onRobotInspect }) {
         {/* ============================================================ */}
         {(filter === "all" || filter === "app") && (
           <div className="mb-14">
-            {filter === "all" && (
-              <div className="flex items-center gap-3 mb-6">
-                <span className="text-xs font-semibold uppercase tracking-widest text-zinc-400">
-                  Mobile Applications
-                </span>
-                <div className="flex-1 h-px bg-zinc-800/80"></div>
-              </div>
-            )}
+            <div className="flex items-center gap-3 mb-6">
+              <span className="text-xs font-semibold uppercase tracking-widest text-zinc-400">
+                Mobile Applications
+              </span>
+              <div className="flex-1 h-px bg-zinc-800/80"></div>
+            </div>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
               {appProjects.map((project) => (
                 <motion.div
@@ -389,14 +386,12 @@ function Projects({ onRobotInspect }) {
         {/* ============================================================ */}
         {(filter === "all" || filter === "web") && (
           <div>
-            {filter === "all" && (
-              <div className="flex items-center gap-3 mb-6">
-                <span className="text-xs font-semibold uppercase tracking-widest text-zinc-400">
-                  Web Platforms & Dashboards
-                </span>
-                <div className="flex-1 h-px bg-zinc-800/80"></div>
-              </div>
-            )}
+            <div className="flex items-center gap-3 mb-6">
+              <span className="text-xs font-semibold uppercase tracking-widest text-zinc-400">
+                Web Platforms & Dashboards
+              </span>
+              <div className="flex-1 h-px bg-zinc-800/80"></div>
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
               {webProjects.map((project) => (
                 <motion.div
