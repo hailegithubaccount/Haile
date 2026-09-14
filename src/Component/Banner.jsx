@@ -186,10 +186,15 @@ function Banner({ onRobotInspect }) {
                 <motion.div 
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  className="w-full h-full flex flex-col bg-gray-900 absolute inset-0 z-40"
+                  className="w-full h-full flex flex-col bg-zinc-950 absolute inset-0 z-40 overflow-hidden"
                   onClick={(e) => e.stopPropagation()}
-                >                  {/* SMS Header */}
-                  <div className="w-full h-16 bg-zinc-800/90 backdrop-blur-md border-b border-zinc-700 flex items-center px-4 pt-4 shrink-0 shadow-sm z-10">
+                >
+                  {/* Wallpaper Background Image */}
+                  <img src={profileImage} className="absolute inset-0 w-full h-full object-cover opacity-45 blur-[2px] scale-105" alt="Chat Screen Wallpaper" />
+                  <div className="absolute inset-0 bg-black/55 z-0"></div>
+
+                  {/* SMS Header */}
+                  <div className="w-full h-16 bg-zinc-900/85 backdrop-blur-md border-b border-zinc-700/80 flex items-center px-4 pt-4 shrink-0 shadow-sm z-10">
                     <button 
                       onClick={(e) => { e.stopPropagation(); setOpenedApp(null); }}
                       className="text-blue-400 text-sm flex items-center font-medium hover:text-blue-300 transition-colors cursor-pointer"
@@ -198,20 +203,20 @@ function Banner({ onRobotInspect }) {
                     </button>
                     <div className="flex-1 flex justify-center pr-12">
                        <div className="flex flex-col items-center cursor-default">
-                         <div className="w-6 h-6 rounded-full bg-zinc-700 overflow-hidden mb-[2px]">
-                           <img src={profileImage} alt="Haile" className="w-full h-full object-cover" />
-                         </div>
-                         <span className="text-zinc-200 font-semibold text-[10px] leading-none">Haile</span>
-                       </div>
+                          <div className="w-6 h-6 rounded-full bg-zinc-700 overflow-hidden mb-[2px] ring-1 ring-zinc-500/50">
+                            <img src={profileImage} alt="Haile" className="w-full h-full object-cover" />
+                          </div>
+                          <span className="text-zinc-200 font-semibold text-[10px] leading-none">Haile</span>
+                        </div>
                     </div>
                   </div>
 
                   {/* SMS Chat Area */}
-                  <div ref={chatContainerRef} className="flex-1 w-full overflow-y-auto p-4 space-y-4 bg-zinc-900 scroll-smooth">
-                    <div className="text-center text-[10px] text-zinc-500 font-medium my-2">Today {timeString}</div>
+                  <div ref={chatContainerRef} className="flex-1 w-full overflow-y-auto p-4 space-y-4 scroll-smooth relative z-10">
+                    <div className="text-center text-[10px] text-zinc-300 font-medium my-2 drop-shadow-sm">Today {timeString}</div>
                     {messages.map((msg) => (
                       <div key={msg.id} className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
-                        <div className={`max-w-[85%] rounded-2xl px-4 py-2 text-xs shadow-md ${msg.sender === 'user' ? 'bg-blue-600 text-white rounded-br-sm' : 'bg-zinc-800 text-zinc-200 rounded-bl-sm border border-zinc-700'}`}>
+                        <div className={`max-w-[85%] rounded-2xl px-4 py-2 text-xs shadow-lg backdrop-blur-md ${msg.sender === 'user' ? 'bg-blue-600/90 text-white rounded-br-sm border border-blue-500/30' : 'bg-zinc-900/90 text-zinc-100 rounded-bl-sm border border-zinc-700/80'}`}>
                           {msg.text}
                         </div>
                       </div>
@@ -219,14 +224,14 @@ function Banner({ onRobotInspect }) {
                   </div>
 
                   {/* SMS Input Area */}
-                  <div className="w-full p-3 bg-zinc-800/90 backdrop-blur-md border-t border-zinc-700 pb-5 shrink-0">
+                  <div className="w-full p-3 bg-zinc-900/85 backdrop-blur-md border-t border-zinc-700/80 pb-5 shrink-0 relative z-10">
                     <form onSubmit={handleSendMessage} className="flex relative">
                       <input 
                         type="text" 
                         value={inputText}
                         onChange={(e) => setInputText(e.target.value)}
                         placeholder="Text Message"
-                        className="w-full bg-zinc-900 text-zinc-100 rounded-full pl-4 pr-10 py-2.5 text-xs outline-none border border-zinc-600 focus:border-blue-500 transition-colors placeholder-zinc-500"
+                        className="w-full bg-zinc-950/80 text-zinc-100 rounded-full pl-4 pr-10 py-2.5 text-xs outline-none border border-zinc-600/80 focus:border-blue-500 transition-colors placeholder-zinc-400 backdrop-blur-sm"
                       />
                       <button 
                         type="submit" 
