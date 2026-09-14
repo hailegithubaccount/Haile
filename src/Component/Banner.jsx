@@ -32,9 +32,10 @@ function Banner({ onRobotInspect }) {
   // SMS App State (opened by default on page load)
   const [openedApp, setOpenedApp] = useState('sms');
   const [messages, setMessages] = useState([
-    { text: "Hi! I am Haile. Feel free to leave a message.", sender: 'haile', id: 1 }
+    { text: "Hi! I am Haile. How can I help you today? Ask about my mobile apps, web projects, skills, or contact info!", sender: 'haile', id: 1 }
   ]);
   const [inputText, setInputText] = useState("");
+  const [isTyping, setIsTyping] = useState(false);
   const chatContainerRef = useRef(null);
 
   const scrollToBottom = () => {
@@ -50,22 +51,79 @@ function Banner({ onRobotInspect }) {
     if (openedApp === 'sms') {
       scrollToBottom();
     }
-  }, [messages, openedApp]);
+  }, [messages, openedApp, isTyping]);
+
+  const knowledgeBase = [
+    {
+      keywords: ["hi", "hello", "hey", "greetings", "selam"],
+      response: "Hello! Welcome to Haile's portfolio! Ask me about mobile apps, web platforms, technical skills, or how to contact Haile!"
+    },
+    {
+      keywords: ["mobile", "react native", "flutter", "expo", "ios", "android"],
+      response: "Haile builds production cross-platform mobile apps for iOS & Android using React Native and Flutter. Notable apps include Dashen Super App, HIMS Clinical App, and EthioPost Agent App!"
+    },
+    {
+      keywords: ["skill", "tech", "stack", "react", "node", "typescript", "nest"],
+      response: "Haile's core stack includes React Native, Flutter, React, TypeScript, Node.js, NestJS, Express, REST APIs, MySQL, MongoDB, and Firebase!"
+    },
+    {
+      keywords: ["project", "work", "app", "portfolio", "dashen", "hims"],
+      response: "Haile has engineered 10+ production applications & platforms! Scroll down to the Featured Projects section to inspect deep tech specifications and source code!"
+    },
+    {
+      keywords: ["contact", "phone", "number", "call", "reach", "telegram", "email"],
+      response: "You can call or text Haile directly at +251 927 831 856 or message him on Telegram (@Haile6). You can also scroll to the Contact section below!"
+    },
+    {
+      keywords: ["hire", "job", "freelance", "role", "availab", "work"],
+      response: "Yes! Haile is available for Full-Stack & Mobile Software Engineering roles and contract projects. Call +251 927 831 856 or connect via LinkedIn!"
+    },
+    {
+      keywords: ["where", "locat", "ethiopia", "city", "address"],
+      response: "Haile is based in Ethiopia and collaborates with international companies and clients remotely or on-site."
+    },
+    {
+      keywords: ["cv", "resume", "download"],
+      response: "You can download Haile's Resume directly using the 'Download CV' button on the left side of this hero section!"
+    },
+    {
+      keywords: ["price", "cost", "rate", "salary"],
+      response: "Pricing and project rates depend on the scope of work. Feel free to contact Haile directly via Telegram (@Haile6) or phone (+251 927 831 856) to discuss your project!"
+    }
+  ];
+
+  const getAiBotResponse = (input) => {
+    const text = input.toLowerCase().trim();
+    const match = knowledgeBase.find(item => 
+      item.keywords.some(keyword => text.includes(keyword))
+    );
+
+    if (match) {
+      return match.response;
+    }
+
+    return "To answer this specific question, feel free to call/text Haile directly at +251 927 831 856,";
+  };
 
   const handleSendMessage = (e) => {
     e.preventDefault();
-    if (!inputText.trim()) return;
+    if (!inputText.trim() || isTyping) return;
 
-    setMessages(prev => [...prev, { text: inputText, sender: 'user', id: Date.now() }]);
+    const userText = inputText.trim();
+    setMessages(prev => [...prev, { text: userText, sender: 'user', id: Date.now() }]);
     setInputText("");
+    setIsTyping(true);
+
+    const botReply = getAiBotResponse(userText);
 
     setTimeout(() => {
+      setIsTyping(false);
       setMessages(prev => [...prev, {
-        text: "I’m currently unavailable to chat. Please reach me by phone at +251 927 831 856. Thank you!",
+        text: botReply,
         sender: 'haile',
         id: Date.now() + 1
       }]);
-    }, 1000);
+    }, 700);
   };
 
   useEffect(() => {
@@ -206,7 +264,7 @@ function Banner({ onRobotInspect }) {
                           <div className="w-6 h-6 rounded-full bg-zinc-700 overflow-hidden mb-[2px] ring-1 ring-zinc-500/50">
                             <img src={profileImage} alt="Haile" className="w-full h-full object-cover" />
                           </div>
-                          <span className="text-zinc-200 font-semibold text-[10px] leading-none">Haile</span>
+                          <span className="text-zinc-200 font-semibold text-[10px] leading-none">Haile (AI)</span>
                         </div>
                     </div>
                   </div>
@@ -221,6 +279,16 @@ function Banner({ onRobotInspect }) {
                         </div>
                       </div>
                     ))}
+                    {isTyping && (
+                      <div className="flex justify-start">
+                        <div className="bg-zinc-900/90 text-zinc-300 rounded-2xl px-4 py-2 text-xs rounded-bl-sm border border-zinc-700/80 flex items-center gap-1.5 shadow-md">
+                          <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse"></span>
+                          <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse delay-100"></span>
+                          <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse delay-200"></span>
+                          <span className="text-[10px] text-zinc-400 ml-1">Haile is typing...</span>
+                        </div>
+                      </div>
+                    )}
                   </div>
 
                   {/* SMS Input Area */}
